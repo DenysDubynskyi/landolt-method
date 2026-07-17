@@ -362,7 +362,7 @@
         <button class="step-tab" onclick="switchStep(3, this)">Шаг 3</button>
         <button class="step-tab" onclick="switchStep(4, this)">Шаг 4</button>
         <button class="step-tab" onclick="switchStep(5, this)">Шаг 5</button>
-        <button class="step-tab active" onclick="switchStep(6, this)">Шаг 6</button>
+        <button class="step-tab" onclick="switchStep(6, this)">Шаг 6</button>
         <button class="step-tab" onclick="switchStep(7, this)">Шаг 7</button>
         <button class="step-tab" onclick="switchStep(8, this)">Шаг 8</button>
     </div>
@@ -377,12 +377,13 @@
             </div>
             <div class="download-box">
                 <button onclick="openLandoltModal()" class="btn-action btn-blue">👁️ Открыть Таблицу Ландольта</button>
-                <!-- ТУТ ТОЧЕЧНО ЗАМЕНЕН ПУТЬ НА СКАЧИВАНИЕ ФАЙЛА EXCEL -->
                 <a href="vision_diary.xlsx" download class="btn-action btn-green">📥 Скачать Дневник (Excel)</a>
             </div>
         </div>
 
+        <!-- КАРТОЧКА С КОНТЕНТОМ, КОТОРЫЙ ТЕПЕРЬ МЕНЯЕТСЯ АВТОМАТИЧЕСКИ -->
         <div class="content-card" id="dynamic-content">
+            <!-- Начальное заполнение для Шага 6, так как вкладки инициализируются динамически -->
             <h2>Шаг 6: Статические упражнения</h2>
             <div class="meta-info">
                 <span>⏱️ Время: ~6 минут</span>
@@ -411,7 +412,6 @@
         </div>
         
         <div class="pdf-viewer-container">
-            <!-- ТУТ ОСТАЛСЯ ТВОЙ ОРИГИНАЛЬНЫЙ РАБОЧИЙ ПУТЬ К PDF -->
             <iframe id="pdf-frame" class="pdf-frame" src="landolt_table.pdf"></iframe>
         </div>
 
@@ -425,15 +425,30 @@
         5: "f2ZAKk_u4CU", 6: "u4YLm5xKJL0", 7: "aOjabwu5GzU", 8: "NnhBp5lhLZg"
     };
 
+    // ТОЧЕЧНЫЙ КИРПИЧИК КОРРЕКТНЫХ ДАННЫХ ДЛЯ КАЖДОГО ШАГА
+    const stepContents = {
+        1: { title: "Шаг 1: Введение в методику", time: "~5 минут", info: "Ознакомление", name: "Вводная часть", desc: "Общие правила проведения гимнастики для глаз." },
+        2: { title: "Шаг 2: Подготовка и разогрев", time: "~3 минуты", info: "Базовый уровень", name: "Разогрев мышц", desc: "Легкие круговые движения и пальминг." },
+        3: { title: "Шаг 3: Динамическая разминка", time: "~4 минуты", info: "Активная фаза", name: "Движения по осям", desc: "Повороты глаз вверх-вниз, влево-вправо." },
+        4: { title: "Шаг 4: Фокусировка", time: "~5 минут", info: "Акцент на хрусталик", name: "Близко-далеко", desc: "Перевод взгляда с кончика носа на дальний объект." },
+        5: { title: "Шаг 5: Работа с аккомодацией", time: "~6 минут", info: "Продвинутый уровень", name: "Слежение", desc: "Плавное ведение взгляда по сложным траекториям." },
+        6: { title: "Шаг 6: Статические упражнения", time: "~6 минут", info: "По 10 повторений", name: "Упражнение №1", desc: "Зафиксируйте взгляд. Наклоны головы." },
+        7: { title: "Шаг 7: Расслабление", time: "~4 минуты", info: "Снятие напряжения", name: "Моргание", desc: "Быстрое и легкое моргание для отдыха цилиарной мышцы." },
+        8: { title: "Шаг 8: Результаты практики", time: "~8 минут", info: "Итоги системы", name: "Анализ прогресса", desc: "Подведение итогов, фиксация результатов в дневнике зрения." }
+    };
+
     let currentStep = 6;
 
     function initPlayer() {
         const player = document.getElementById('video-player');
         player.src = "https://www.youtube.com/embed/" + videoIDs[currentStep] + "?enablejsapi=1";
+        // При первой загрузке тоже ставим текст выбранного шага
+        updateContentCard(currentStep);
     }
 
     window.onload = initPlayer;
 
+    // ТОЧЕЧНО ОБНОВЛЕННАЯ ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ (ОБНОВЛЯЕТ И ВИДЕО, И ТЕКСТ)
     function switchStep(stepNum, element) {
         currentStep = stepNum;
         const tabs = document.querySelectorAll('.step-tab');
@@ -442,6 +457,30 @@
 
         const videoId = videoIDs[stepNum];
         document.getElementById('video-player').src = "https://www.youtube.com/embed/" + videoId + "?enablejsapi=1&autoplay=1";
+        
+        // Магия Лего: обновляем текст в правой карточке
+        updateContentCard(stepNum);
+    }
+
+    // ВСПОМОГАТЕЛЬНЫЙ КИРПИЧИК ДЛЯ ПЕРЕЗАПИСИ ПРАВОЙ ЧАСТИ
+    function updateContentCard(stepNum) {
+        const data = stepContents[stepNum];
+        const container = document.getElementById('dynamic-content');
+        if (!data || !container) return;
+
+        container.innerHTML = `
+            <h2>${data.title}</h2>
+            <div class="meta-info">
+                <span>⏱️ Время: ${data.time}</span>
+                <span>🔁 ${data.info}</span>
+            </div>
+            <div class="exercises-list">
+                <div class="exercise-item active">
+                    <h4><span>${data.name}</span> <span class="time-tag">0:10</span></h4>
+                    <p>${data.desc}</p>
+                </div>
+            </div>
+        `;
     }
 
     function toggleTheme() {
