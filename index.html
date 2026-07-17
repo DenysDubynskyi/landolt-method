@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- Строгая блокировка масштабирования: сайт зафиксирован и больше не растягивается пальцами -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Методика DD — Интерактивное обучение</title>
+    <title>Восстановление зрения по методике DD — Интерактивное обучение</title>
     <style>
         :root {
             --primary-color: #007bff; 
@@ -37,8 +37,8 @@
         .header-wrapper { background-color: var(--card-bg); border-bottom: 1px solid var(--border-color); width: 100%; }
         header { max-width: 900px; margin: 0 auto; padding: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
         .logo-block { display: flex; flex-direction: column; }
-        .logo { font-weight: bold; font-size: 20px; color: var(--primary-color); }
-        .tagline { font-size: 13px; color: #7f8c8d; font-style: italic; margin-top: 2px; }
+        .logo { font-weight: bold; font-size: 22px; color: var(--primary-color); line-height: 1.2; }
+        .tagline { font-size: 13px; color: #7f8c8d; font-style: italic; margin-top: 4px; }
         
         .controls-panel { display: flex; align-items: center; gap: 15px; }
         .theme-toggle-btn {
@@ -76,7 +76,7 @@
         }
         .step-tab.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
 
-        /* ПЛЕЕР ДЛЯ ВЕРТИКАЛЬНЫХ ШОРТСОВ (Оптимизирован под мобильные и ПК) */
+        /* ПЛЕЕР ДЛЯ ВЕРТИКАЛЬНЫХ ШОРТСОВ */
         .visual-display-zone { 
             max-width: 340px; 
             margin: 0 auto 20px auto; 
@@ -132,8 +132,10 @@
         .btn-green { background-color: #28a745; }
 
         @media (max-width: 768px) {
-            header { padding: 10px; gap: 10px; justify-content: center; text-align: center; }
-            .controls-panel { flex-direction: column; width: 100%; gap: 10px; }
+            header { padding: 15px 10px; gap: 12px; justify-content: center; text-align: center; }
+            .logo-block { width: 100%; align-items: center; }
+            .logo { font-size: 20px; text-align: center; }
+            .controls-panel { flex-direction: column; width: 100%; gap: 12px; }
             .steps-nav { overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
             .step-tab { flex: none; padding: 10px 18px; font-size: 13px; }
             .content-card { padding: 15px; }
@@ -150,7 +152,8 @@
 <div class="header-wrapper">
     <header>
         <div class="logo-block">
-            <div class="logo">Методика DD</div>
+            <!-- Новый полноценный заголовок на всю длину -->
+            <div class="logo">Восстановление зрения по методике DD</div>
             <div class="tagline">Полный курс улучшения когнитивных функций</div>
         </div>
         <div class="controls-panel">
@@ -272,7 +275,7 @@
         <h2>7. Динамические упражнения</h2>
         <p>Все упражнения этого комплекса выполняются по 10 повторений. Во всех упражнениях этой группы движение выполняется плавно и непрерывно, без остановки в среднем положении. Опорная нога остаётся неподвижной. Движение выполняется второй ногой с переносом веса тела вперёд и назад.</p>
         <ul>
-            <li><strong>Упражнение №1:</strong> Сделайте шаг вперёд второй ногой, перенося на неё вес тела и одновременно выполняя глубокий вдох. В крайнем переднем положении выполните «ФТ». Не останавливаясь, плавно начните движение назад. Пройдя через исходное положение, перенесите вес тела назад. В крайнем заднем положении выполните «ФТ».</li>
+            <li><strong>Упражнение №1:</strong> Сделайте шаг вперёд второй ногой, перенося на неё вес тела и одновременно выполняя глубокий вдох. В крайнем переднем положении выполните «ФТ». Не останавливаясь, плавно начните движение назад. Пройдя через исходное положение, перенесите вес тела назад. В крайнем заднем положении выполните «ФТ}$.</li>
             <li><strong>Упражнение №2:</strong> Выполните упражнение №1, но с головой, повёрнутой вправо примерно на 90° относительно направления движения. Во время движения вперёд взгляд зафиксирован на точке. Во время движения назад переведите взгляд на противоположную стену.</li>
             <li><strong>Упражнение №3:</strong> Выполните упражнение №2 в зеркальном отражении (голова влево, опорная правая нога).</li>
             <li><strong>Упражнение №4:</strong> Выполните упражнение №1, но с максимально запрокинутой назад головой. Во время движения вперёд взгляд зафиксирован на точке. Во время движения назад максимально переведите взгляд вверх.</li>
@@ -385,7 +388,6 @@
         btn.innerText = body.classList.contains('green-theme') ? "Переключить на Синюю тему" : "Переключить на Зелёную тему";
     }
 
-    // При открытии автоматически включаем первый шаг
     switchStep(1);
 </script>
 </body>
