@@ -65,7 +65,7 @@
         }
         .lang-btn.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
 
-        .container { max-width: 1400px; margin: 20px auto; padding: 0 15px; }
+        .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
 
         .steps-nav {
             display: flex; gap: 8px; overflow-x: auto; padding-bottom: 15px;
@@ -79,8 +79,8 @@
         }
         .step-tab.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
 
-        .main-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; }
-        .video-container { position: sticky; top: 20px; }
+        /* ВЕРТИКАЛЬНЫЙ МАКЕТ */
+        .main-layout { display: flex; flex-direction: column; gap: 20px; }
 
         .iframe-wrapper {
             position: relative; padding-bottom: 56.25%; height: 0;
@@ -89,18 +89,16 @@
         .iframe-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         .subtitles-box {
-            margin-top: 15px; background-color: var(--sub-bg); color: var(--sub-text);
-            padding: 15px; border-radius: 8px; font-size: 15px; min-height: 60px;
-            display: flex; align-items: center; justify-content: center; text-align: center;
-            border-left: 5px solid var(--primary-color);
+            background-color: var(--sub-bg); color: var(--sub-text);
+            padding: 12px 15px; border-radius: 8px; font-size: 14px; text-align: center;
+            border-left: 5px solid var(--primary-color); margin-top: 5px;
         }
 
         .content-card {
-            background-color: var(--card-bg); padding: 30px; border-radius: 8px;
+            background-color: var(--card-bg); padding: 25px; border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid var(--border-color);
-            max-height: 85vh; overflow-y: auto;
         }
-        .content-card h2 { margin-top: 0; font-size: 20px; color: var(--text-color); }
+        .content-card h2 { margin-top: 0; font-size: 20px; color: var(--text-color); margin-bottom: 15px; }
 
         /* БЛОК КРАТКОЙ СУТИ ВИДЕО */
         .summary-box {
@@ -109,7 +107,7 @@
             padding: 15px; margin-bottom: 20px; border-radius: 4px;
         }
         .summary-box h3 { margin: 0 0 8px 0; font-size: 15px; color: var(--primary-color); }
-        .summary-box p { margin: 0; font-size: 13.5px; color: var(--text-color); }
+        .summary-box p { margin: 0; font-size: 14px; color: var(--text-color); }
 
         /* ИНТЕРАКТИВНЫЙ СПИСОК УПРАЖНЕНИЙ */
         .exercises-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
@@ -120,10 +118,10 @@
         .exercise-item:hover { border-color: var(--primary-color); background-color: rgba(0, 123, 255, 0.01); }
         .exercise-item h4 { margin: 0 0 6px 0; display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
         .time-tag { font-size: 11px; color: white; background-color: var(--primary-color); padding: 3px 8px; border-radius: 10px; font-weight: bold; }
-        .exercise-item p { margin: 0; font-size: 12.5px; color: #7f8c8d; line-height: 1.4; }
+        .exercise-item p { margin: 0; font-size: 13px; color: #7f8c8d; line-height: 1.4; }
         .exercise-item.active { border-color: var(--primary-color); background-color: rgba(0, 123, 255, 0.04); }
 
-        /* ВСПЛЫВАЮЩИЙ ДЛЯ ПОЛНОГО ТЕКСТА АККОРДЕОН */
+        /* АККОРДЕОН ДЛЯ ПОЛНОГО ТЕКСТА */
         .full-text-accordion { border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; margin-top: 15px; }
         .accordion-trigger {
             width: 100%; background-color: #f8f9fa; border: none; padding: 12px 15px;
@@ -131,9 +129,9 @@
             cursor: pointer; display: flex; justify-content: space-between; align-items: center;
         }
         .accordion-trigger:hover { background-color: #e9ecef; }
-        .accordion-content { display: none; padding: 15px; background-color: #ffffff; border-top: 1px solid var(--border-color); font-size: 13.5px; color: #34495e; max-height: 300px; overflow-y: auto; }
+        .accordion-content { display: none; padding: 15px; background-color: #ffffff; border-top: 1px solid var(--border-color); font-size: 14px; color: #34495e; max-height: 400px; overflow-y: auto; }
 
-        .download-box { display: flex; gap: 15px; margin-top: 20px; }
+        .download-box { display: flex; gap: 15px; margin-top: 10px; }
         .btn-action { flex: 1; padding: 12px; text-align: center; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 13px; display: inline-block; border: none; cursor: pointer; }
         .btn-blue { background-color: #007bff; }
         .btn-green { background-color: #28a745; }
@@ -148,11 +146,9 @@
         .modal-header-area { text-align: left; padding-right: 40px; }
         .modal-btn-print { background-color: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; align-self: flex-start; margin-top: 15px; }
 
-        @media (max-width: 850px) {
-            .main-layout { grid-template-columns: 1fr; gap: 15px; }
-            .video-container { position: sticky; top: 0; z-index: 100; background-color: var(--bg-color); padding: 5px 0; }
-            .content-card { max-height: none; padding: 15px; border: none; background: transparent; }
+        @media (max-width: 600px) {
             .download-box { flex-direction: column; gap: 10px; }
+            .content-card { padding: 15px; }
         }
     </style>
 </head>
@@ -171,6 +167,7 @@
 </header>
 
 <div class="container">
+    <!-- Шапка переключения шагов -->
     <div class="steps-nav">
         <button class="step-tab" onclick="switchStep(1, this)">Шаг 1</button>
         <button class="step-tab" onclick="switchStep(2, this)">Шаг 2</button>
@@ -182,25 +179,30 @@
         <button class="step-tab" onclick="switchStep(8, this)">Шаг 8</button>
     </div>
 
+    <!-- Центральный вертикальный блок -->
     <div class="main-layout">
-        <div class="video-container">
+        <!-- Блок видеоплеера -->
+        <div class="video-section">
             <div class="iframe-wrapper">
                 <iframe id="video-player" src="" allowfullscreen></iframe>
             </div>
             <div class="subtitles-box" id="subtitles">
-                💬 Нажмите на упражнение справа для интерактивной перемотки видео.
-            </div>
-            <div class="download-box">
-                <button onclick="openLandoltModal()" class="btn-action btn-blue">👁️ Открыть Таблицу Ландольта</button>
-                <a href="vision_diary.xlsx" download class="btn-action btn-green">📥 Скачать Дневник (Excel)</a>
+                💡 Выберите нужный шаг выше. Видеоролики содержат таймкоды для быстрой навигации.
             </div>
         </div>
 
-        <!-- КАРТОЧКА С ДВУМЯ РЕЖИМАМИ: СЖАТЫЙ АНОНС + ПОЛНАЯ СТАТЬЯ РЯДОМ -->
+        <!-- Текстовый блок (Краткая суть + Разворачиваемый текст + Интерактивные упражнения) -->
         <div class="content-card" id="dynamic-content"></div>
+
+        <!-- Кнопки полезных материалов в самом низу -->
+        <div class="download-box">
+            <button onclick="openLandoltModal()" class="btn-action btn-blue">👁️ Открыть Таблицу Ландольта</button>
+            <a href="vision_diary.xlsx" download class="btn-action btn-green">📥 Скачать Дневник (Excel)</a>
+        </div>
     </div>
 </div>
 
+<!-- Модалка с PDF -->
 <div id="landolt-modal" class="modal-overlay" onclick="closeLandoltModal(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="close-modal" onclick="closeLandoltModal(event)">&times;</span>
@@ -223,13 +225,12 @@
         5: "f2ZAKk_u4CU", 6: "u4YLm5xKJL0", 7: "aOjabwu5GzU", 8: "NnhBp5lhLZg"
     };
 
-    // БАЗА ДАННЫХ ЛЕГО: Разделена на Короткую суть (анонс) и Полную главу документа DD
     const stepContents = {
         1: {
             title: "Шаг 1: Правила старта",
             summary: "В этом видео объясняется философия методики. Автор рассказывает, почему важно строго придерживаться оригинального алгоритма без изменений, чтобы получить запланированный результат.",
             hasExercises: false,
-            fullText: "Я считаю, что каждому человеку лучше создать собственную систему, чем всю жизнь пользоваться чугой. Именно так появилась и эта методика. Я создавал её постепенно, проверяя каждое изменение на практике и фиксируя результаты. Если вы сможете создать свою систему, я считаю, что она принесёт вам больше пользы, чем любая чужая, включая мою. Но если вы решили проверить именно мою систему, выполняйте её в точности так, как она описана в этом документе и показана в видеороликах на моём канале. Не изменяйте упражнения, их последовательность и отдельные элементы. Если вы что-либо изменили, значит вы выполняете уже другую систему, а не мою."
+            fullText: "Я считаю, что каждому человеку лучше создать собственную систему, чем всю жизнь пользоваться чужой. Именно так появилась и эта методика. Я создавал её постепенно, проверяя каждое изменение на практике и фиксируя результаты. Если вы сможете создать свою систему, я считаю, что она принесёт вам больше пользы, чем любая чужая, включая мою. Но если вы решили проверить именно мою систему, выполняйте её в точности так, как она описана в этом документе и показана в видеороликах на моём канале. Не изменяйте упражнения, их последовательность и отдельные элементы. Если вы что-либо изменили, значит вы выполняете уже другую систему, а не мою."
         },
         2: {
             title: "Шаг 2: История создания методики",
@@ -257,7 +258,7 @@
         },
         6: {
             title: "Шаг 6: Интерактивный статический комплекс",
-            summary: "Видео-руководство по 11 статическим упражнениям. Все движения выполняются по 10 повторений с максимальной амплитудой, дыханием и фиксацией «ФТ» в крайних точках.",
+            summary: "Ниже представлены таймкоды для 11 упражнений статики. Кликните по любому пункту, чтобы запустить демонстрацию нужного движения на видеоплеере.",
             hasExercises: true,
             fullText: "Все упражнения этого комплекса выполняются по 10 повторений. Во всех упражнениях вдох и выдох выполняются во время движения, а не после достижения крайнего положения. В каждом крайнем положении выполняется «ФТ».",
             items: [
@@ -276,11 +277,11 @@
         },
         7: {
             title: "Шаг 7: Динамический комплекс в движении",
-            summary: "Анимация и демонстрация упражнений в шаге. Вес тела переносится плавно, опорная нога неподвижна. Каждое задание выполняется по 10 раз.",
+            summary: "Интерактивный список упражнений в движении. Нажмите на пункт ниже для быстрой перемотки видео к технике выполнения конкретного упражнения.",
             hasExercises: true,
             fullText: "Все упражнения выполняются по 10 повторений плавными непрерывными шагами. Опорная нога неподвижна, вес тела переносится вперёд и назад со второй ноги.",
             items: [
-                { id: 1, time: "0:15", name: "Упражнение №1", desc: "Шаг вперёд (вдох + ФТ на точке), плавное непрерывное движение назад (выдох + ФТ в конечной точке)." },
+                { id: 1, time: "0:15", name: "Упражнение №1", desc: "Шаг вперёд (вдох + ФТ на точке), движение назад (выдох + ФТ)." },
                 { id: 2, time: "1:00", name: "Упражнение №2", desc: "Голова повернута вправо на 90°. Движение вперёд — взгляд на точке. Движение назад — взгляд переводится на стену сзади." },
                 { id: 3, time: "1:45", name: "Упражнение №3", desc: "Зеркальное отображение упражнения №2 (Голова влево, шаг левой ногой)." },
                 { id: 4, time: "2:30", name: "Упражнение №4", desc: "Голова запрокинута назад. Вперёд — взгляд на точку. Назад — взгляд переводится максимально вверх." },
@@ -318,9 +319,16 @@
 
         document.getElementById('video-player').src = "https://www.youtube.com/embed/" + videoIDs[stepNum] + "?enablejsapi=1&autoplay=1";
         updateContentCard(stepNum);
+        
+        // Меняем общую подсказку под плеером в зависимости от наличия упражнений
+        const sub = document.getElementById('subtitles');
+        if(stepContents[stepNum].hasExercises) {
+            sub.innerHTML = "🎯 Нажмите на интерактивные карточки упражнений ниже, чтобы сразу перемотать видео к нужному элементу.";
+        } else {
+            sub.innerHTML = "📋 Текстовое описание и важные нюансы текущего шага находятся чуть ниже.";
+        }
     }
 
-    // ЛЕГО-КИРПИЧИК: Генерация компактного контента с кнопкой разворачивания полной статьи
     function updateContentCard(stepNum) {
         const data = stepContents[stepNum];
         const container = document.getElementById('dynamic-content');
@@ -343,19 +351,16 @@
         container.innerHTML = `
             <h2>${data.title}</h2>
             
-            <!-- Основная краткая мысль видео -->
             <div class="summary-box">
-                <h3>💡 Краткий обзор видео:</h3>
+                <h3>💡 О чём это видео:</h3>
                 <p>${data.summary}</p>
             </div>
 
-            <!-- Список интерактивных тайм-кодов (если они есть в этой главе) -->
             ${exercisesHTML}
 
-            <!-- Аккордеон с полным оригинальным текстом статьи -->
             <div class="full-text-accordion">
                 <button class="accordion-trigger" onclick="toggleAccordion()">
-                    📖 Читать полный текст статьи руководства <span id="arrow-icon">▼</span>
+                    📖 Показать полное текстовое руководство к шагу <span id="arrow-icon">▼</span>
                 </button>
                 <div class="accordion-content" id="accordion-text">
                     ${data.fullText}
@@ -385,6 +390,9 @@
             const items = document.querySelectorAll('.exercise-item');
             items.forEach(el => el.classList.remove('active'));
             event.currentTarget.classList.add('active');
+            
+            // Скроллим страницу плавно вверх к плееру после клика по упражнению
+            document.querySelector('.video-section').scrollIntoView({ behavior: 'smooth' });
         }
     }
 
