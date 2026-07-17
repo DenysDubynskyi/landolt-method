@@ -370,7 +370,7 @@
     <div class="main-layout">
         <div class="video-container">
             <div class="iframe-wrapper">
-                <iframe id="video-player" src="" allowfullscreen></iframe>
+                <div id="player"></div>
             </div>
             <div class="subtitles-box" id="subtitles">
                 💬 Нажмите на упражнение справа для интерактивной перемотки видео.
@@ -388,7 +388,7 @@
                 <span>🔁 По 10 повторений</span>
             </div>
             <div class="exercises-list">
-                <div class="exercise-item active">
+                <div class="exercise-item active" onclick="seekTo(10)">
                     <h4><span>Упражнение №1</span> <span class="time-tag">0:10</span></h4>
                     <p>Зафиксируйте взгляд. Наклоны головы.</p>
                 </div>
@@ -410,7 +410,6 @@
         </div>
         
         <div class="pdf-viewer-container">
-            <!-- Укажите путь к вашему оригинальному PDF-файлу вместо "landolt_table.pdf" -->
             <iframe id="pdf-frame" class="pdf-frame" src="landolt_table.pdf"></iframe>
         </div>
 
@@ -425,13 +424,25 @@
     };
 
     let currentStep = 6;
+    let player;
 
-    function initPlayer() {
-        const player = document.getElementById('video-player');
-        player.src = "https://www.youtube.com/embed/" + videoIDs[currentStep] + "?enablejsapi=1";
+    // Загрузка YouTube API
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            height: '100%',
+            width: '100%',
+            videoId: videoIDs[currentStep],
+            playerVars: {
+                'playsinline': 1,
+                'rel': 0
+            }
+        });
     }
-
-    window.onload = initPlayer;
 
     function switchStep(stepNum, element) {
         currentStep = stepNum;
@@ -439,8 +450,16 @@
         tabs.forEach(tab => tab.classList.remove('active'));
         element.classList.add('active');
 
-        const videoId = videoIDs[stepNum];
-        document.getElementById('video-player').src = "https://www.youtube.com/embed/" + videoId + "?enablejsapi=1&autoplay=1";
+        if (player && player.loadVideoById) {
+            player.loadVideoById(videoIDs[stepNum]);
+        }
+    }
+
+    function seekTo(seconds) {
+        if (player && player.seekTo) {
+            player.seekTo(seconds, true);
+            player.playVideo();
+        }
     }
 
     function toggleTheme() {
@@ -458,14 +477,12 @@
         document.getElementById('landolt-modal').style.display = 'none';
     }
 
-    // Функция для отправки на печать именно PDF-документа, а не всей страницы сайта
     function printPDF() {
         const iframe = document.getElementById('pdf-frame');
         try {
             iframe.contentWindow.focus();
             iframe.contentWindow.print();
         } catch (e) {
-            // Если браузер блокирует прямой доступ к iframe печати из-за cross-origin, открываем PDF в новой вкладке для стандартной печати
             window.open(iframe.src, '_blank');
         }
     }
