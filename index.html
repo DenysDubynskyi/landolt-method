@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Методика DD — Интерактивный Урок</title>
+    <style>
+        /* ЦВЕТОВЫЕ ТЕМЫ */
+        :root {
+            --primary-color: #007bff; 
+            --bg-color: #f4f7f6;
+            --text-color: #2c3e50;
+            --border-color: #dcdde1;
+            --card-bg: #ffffff;
+            --sub-bg: #2f3640;
+            --sub-text: #ffffff;
+            --btn-theme-bg: #28a745; 
+        }
+
+        body.green-theme {
+            --primary-color: #28a745; 
+            --bg-color: #f0f7f4;
+            --text-color: #1e3020;
+            --border-color: #cfe2ce;
+            --card-bg: #ffffff;
+            --sub-bg: #1e3020;
+            --sub-text: #ffffff;
+            --btn-theme-bg: #007bff; 
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        .controls-panel {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle-btn {
+            background-color: var(--btn-theme-bg);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 5px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .lang-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .steps-nav {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .step-tab {
+            padding: 10px 18px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        .step-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 30px;
+        }
+
+        .video-container {
+            position: sticky;
+            top: 20px;
+        }
+
+        .iframe-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            background-color: #000;
+        }
+
+        .iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .subtitles-box {
+            margin-top: 15px;
+            background-color: var(--sub-bg);
+            color: var(--sub-text);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 15px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .content-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .content-card h2 { margin-top: 0; }
+
+        .meta-info {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #7f8c8d;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .exercise-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .exercise-item:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(0, 123, 255, 0.02);
+        }
+
+        .exercise-item h4 {
+            margin: 0 0 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .time-tag {
+            font-size: 11px;
+            color: white;
+            background-color: var(--primary-color);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .exercise-item p {
+            margin: 0;
+            font-size: 13.5px;
+            color: #7f8c8d;
+        }
+
+        .exercise-item.active {
+            border-color: var(--primary-color);
+            background-color: rgba(0, 123, 255, 0.05);
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.1);
+        }
+
+        .download-box {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-blue { background-color: #007bff; }
+        .btn-green { background-color: #28a745; }
+
+        /* СТИЛИ МОДАЛЬНОГО ОКНА ДЛЯ ОТОБРАЖЕНИЯ PDF */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .modal-content {
+            background-color: white;
+            border-radius: 12px;
+            max-width: 1000px;
+            width: 100%;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #7f8c8d;
+            cursor: pointer;
+            transition: color 0.2s;
+            z-index: 1010;
+        }
+        .close-modal:hover { color: #000; }
+        
+        /* Контейнер для точного масштабирования PDF-документа */
+        .pdf-viewer-container {
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #f1f2f6;
+            margin-top: 15px;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .modal-header-area {
+            text-align: left;
+            padding-right: 40px;
+        }
+
+        .modal-btn-print {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            align-self: flex-start;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
+        .modal-btn-print:hover { background-color: #218838; }
+
+        @media (max-width: 850px) {
+            .main-layout { grid-template-columns: 1fr; gap: 15px; }
+            .video-container { position: sticky; top: 0; z-index: 100; background-color: var(--bg-color); padding: 5px 0; }
+            .content-card { max-height: none; padding: 15px; border: none; background: transparent; }
+            .download-box { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Методика DD</div>
+    <div class="controls-panel">
+        <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()">Переключить на Зелёную тему</button>
+        <div class="lang-selector">
+            <button class="lang-btn active">RU</button>
+            <button class="lang-btn">UA</button>
+            <button class="lang-btn">EN</button>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="steps-nav">
+        <button class="step-tab" onclick="switchStep(1, this)">Шаг 1</button>
+        <button class="step-tab" onclick="switchStep(2, this)">Шаг 2</button>
+        <button class="step-tab" onclick="switchStep(3, this)">Шаг 3</button>
+        <button class="step-tab" onclick="switchStep(4, this)">Шаг 4</button>
+        <button class="step-tab" onclick="switchStep(5, this)">Шаг 5</button>
+        <button class="step-tab active" onclick="switchStep(6, this)">Шаг 6</button>
+        <button class="step-tab" onclick="switchStep(7, this)">Шаг 7</button>
+        <button class="step-tab" onclick="switchStep(8, this)">Шаг 8</button>
+    </div>
+
+    <div class="main-layout">
+        <div class="video-container">
+            <div class="iframe-wrapper">
+                <iframe id="video-player" src="" allowfullscreen></iframe>
+            </div>
+            <div class="subtitles-box" id="subtitles">
+                💬 Нажмите на упражнение справа для интерактивной перемотки видео.
+            </div>
+            <div class="download-box">
+                <button onclick="openLandoltModal()" class="btn-action btn-blue">👁️ Открыть Таблицу Ландольта</button>
+                <a href="#" class="btn-action btn-green">📥 Скачать Дневник (Excel)</a>
+            </div>
+        </div>
+
+        <div class="content-card" id="dynamic-content">
+            <h2>Шаг 6: Статические упражнения</h2>
+            <div class="meta-info">
+                <span>⏱️ Время: ~6 минут</span>
+                <span>🔁 По 10 повторений</span>
+            </div>
+            <div class="exercises-list">
+                <div class="exercise-item active">
+                    <h4><span>Упражнение №1</span> <span class="time-tag">0:10</span></h4>
+                    <p>Зафиксируйте взгляд. Наклоны головы.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО С ИНТЕГРИРОВАННЫМ PDF -->
+<div id="landolt-modal" class="modal-overlay" onclick="closeLandoltModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-modal" onclick="closeLandoltModal(event)">&times;</span>
+        
+        <div class="modal-header-area">
+            <h2 style="margin: 0; color:#007bff; font-size: 22px;">Оригинальная таблица Головина-Ландольта (ГОСТ)</h2>
+            <p style="color:#7f8c8d; font-size:13px; margin: 5px 0 0 0;">
+                Медицинский калибровочный документ. Используйте встроенные инструменты для масштабирования и точной печати на А4.
+            </p>
+        </div>
+        
+        <div class="pdf-viewer-container">
+            <!-- Укажите путь к вашему оригинальному PDF-файлу вместо "landolt_table.pdf" -->
+            <iframe id="pdf-frame" class="pdf-frame" src="landolt_table.pdf"></iframe>
+        </div>
+
+        <button class="modal-btn-print" onclick="printPDF()">Распечатать таблицу</button>
+    </div>
+</div>
+
+<script>
+    const videoIDs = {
+        1: "MH96n6Qfn7w", 2: "I1xsAlrI7uo", 3: "FOuHh-QUEbk", 4: "2LKvutESB-I",
+        5: "f2ZAKk_u4CU", 6: "u4YLm5xKJL0", 7: "aOjabwu5GzU", 8: "NnhBp5lhLZg"
+    };
+
+    let currentStep = 6;
+
+    function initPlayer() {
+        const player = document.getElementById('video-player');
+        player.src = "https://www.youtube.com/embed/" + videoIDs[currentStep] + "?enablejsapi=1";
+    }
+
+    window.onload = initPlayer;
+
+    function switchStep(stepNum, element) {
+        currentStep = stepNum;
+        const tabs = document.querySelectorAll('.step-tab');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        element.classList.add('active');
+
+        const videoId = videoIDs[stepNum];
+        document.getElementById('video-player').src = "https://www.youtube.com/embed/" + videoId + "?enablejsapi=1&autoplay=1";
+    }
+
+    function toggleTheme() {
+        const body = document.body;
+        const btn = document.getElementById('theme-btn');
+        body.classList.toggle('green-theme');
+        btn.innerText = body.classList.contains('green-theme') ? "Переключить на Синюю тему" : "Переключить на Зелёную тему";
+    }
+
+    function openLandoltModal() {
+        document.getElementById('landolt-modal').style.display = 'flex';
+    }
+
+    function closeLandoltModal(event) {
+        document.getElementById('landolt-modal').style.display = 'none';
+    }
+
+    // Функция для отправки на печать именно PDF-документа, а не всей страницы сайта
+    function printPDF() {
+        const iframe = document.getElementById('pdf-frame');
+        try {
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
+        } catch (e) {
+            // Если браузер блокирует прямой доступ к iframe печати из-за cross-origin, открываем PDF в новой вкладке для стандартной печати
+            window.open(iframe.src, '_blank');
+        }
+    }
+</script>
+
+</body>
+</html>
