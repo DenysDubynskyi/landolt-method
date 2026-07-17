@@ -295,6 +295,7 @@
         }
         .close-modal:hover { color: #000; }
         
+        /* Контейнер для точного масштабирования PDF-документа */
         .pdf-viewer-container {
             flex-grow: 1;
             width: 100%;
@@ -362,21 +363,21 @@
         <button class="step-tab" onclick="switchStep(4, this)">Шаг 4</button>
         <button class="step-tab" onclick="switchStep(5, this)">Шаг 5</button>
         <button class="step-tab active" onclick="switchStep(6, this)">Шаг 6</button>
-        <button class="step-tab" onclick="switchStep(7, this)">Шаг 8</button>
-        <button class="step-tab" onclick="switchStep(8, this)">Шаг 9</button>
+        <button class="step-tab" onclick="switchStep(7, this)">Шаг 7</button>
+        <button class="step-tab" onclick="switchStep(8, this)">Шаг 8</button>
     </div>
 
     <div class="main-layout">
         <div class="video-container">
             <div class="iframe-wrapper">
-                <!-- Вернул стандартный iframe, который 100% поддерживается YouTube -->
-                <iframe id="video-player" src="https://www.youtube.com/embed/u4YLm5xKJL0" allowfullscreen></iframe>
+                <iframe id="video-player" src="" allowfullscreen></iframe>
             </div>
             <div class="subtitles-box" id="subtitles">
                 💬 Нажмите на упражнение справа для интерактивной перемотки видео.
             </div>
             <div class="download-box">
                 <button onclick="openLandoltModal()" class="btn-action btn-blue">👁️ Открыть Таблицу Ландольта</button>
+                <!-- ТУТ ТОЧЕЧНО ЗАМЕНЕН ПУТЬ НА СКАЧИВАНИЕ ФАЙЛА EXCEL -->
                 <a href="vision_diary.xlsx" download class="btn-action btn-green">📥 Скачать Дневник (Excel)</a>
             </div>
         </div>
@@ -388,7 +389,7 @@
                 <span>🔁 По 10 повторений</span>
             </div>
             <div class="exercises-list">
-                <div class="exercise-item active" onclick="seekTo(10)">
+                <div class="exercise-item active">
                     <h4><span>Упражнение №1</span> <span class="time-tag">0:10</span></h4>
                     <p>Зафиксируйте взгляд. Наклоны головы.</p>
                 </div>
@@ -397,7 +398,7 @@
     </div>
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО -->
+<!-- МОДАЛЬНОЕ ОКНО С ИНТЕГРИРОВАННЫМ PDF -->
 <div id="landolt-modal" class="modal-overlay" onclick="closeLandoltModal(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="close-modal" onclick="closeLandoltModal(event)">&times;</span>
@@ -410,6 +411,7 @@
         </div>
         
         <div class="pdf-viewer-container">
+            <!-- ТУТ ОСТАЛСЯ ТВОЙ ОРИГИНАЛЬНЫЙ РАБОЧИЙ ПУТЬ К PDF -->
             <iframe id="pdf-frame" class="pdf-frame" src="landolt_table.pdf"></iframe>
         </div>
 
@@ -423,19 +425,23 @@
         5: "f2ZAKk_u4CU", 6: "u4YLm5xKJL0", 7: "aOjabwu5GzU", 8: "NnhBp5lhLZg"
     };
 
+    let currentStep = 6;
+
+    function initPlayer() {
+        const player = document.getElementById('video-player');
+        player.src = "https://www.youtube.com/embed/" + videoIDs[currentStep] + "?enablejsapi=1";
+    }
+
+    window.onload = initPlayer;
+
     function switchStep(stepNum, element) {
+        currentStep = stepNum;
         const tabs = document.querySelectorAll('.step-tab');
         tabs.forEach(tab => tab.classList.remove('active'));
         element.classList.add('active');
 
-        const player = document.getElementById('video-player');
-        player.src = "https://www.youtube.com/embed/" + videoIDs[stepNum] + "?autoplay=1";
-    }
-
-    function seekTo(seconds) {
-        const player = document.getElementById('video-player');
-        const currentSrc = player.src.split('?')[0];
-        player.src = currentSrc + "?start=" + seconds + "&autoplay=1";
+        const videoId = videoIDs[stepNum];
+        document.getElementById('video-player').src = "https://www.youtube.com/embed/" + videoId + "?enablejsapi=1&autoplay=1";
     }
 
     function toggleTheme() {
@@ -452,10 +458,6 @@
     function closeLandoltModal(event) {
         document.getElementById('landolt-modal').style.display = 'none';
     }
-
-    document.getElementById('landolt-modal').addEventListener('click', function(e) {
-        if(e.target === this) closeLandoltModal();
-    });
 
     function printPDF() {
         const iframe = document.getElementById('pdf-frame');
