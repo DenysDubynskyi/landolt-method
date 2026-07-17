@@ -49,289 +49,104 @@
             gap: 15px;
         }
 
-        .logo {
-            font-weight: bold;
-            font-size: 20px;
-            color: var(--primary-color);
-        }
-
-        .controls-panel {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .logo { font-weight: bold; font-size: 20px; color: var(--primary-color); }
+        .controls-panel { display: flex; align-items: center; gap: 15px; }
 
         .theme-toggle-btn {
             background-color: var(--btn-theme-bg);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 13px;
+            color: white; border: none; padding: 8px 16px;
+            border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px;
         }
 
-        .lang-selector {
-            display: flex;
-            gap: 5px;
-        }
-
+        .lang-selector { display: flex; gap: 5px; }
         .lang-btn {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 13px;
+            background: none; border: 1px solid var(--border-color); color: var(--text-color);
+            padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 13px;
         }
+        .lang-btn.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
 
-        .lang-btn.active {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
+        .container { max-width: 1400px; margin: 20px auto; padding: 0 15px; }
 
         .steps-nav {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid var(--border-color);
+            display: flex; gap: 8px; overflow-x: auto; padding-bottom: 15px;
+            margin-bottom: 25px; border-bottom: 1px solid var(--border-color);
         }
 
         .step-tab {
-            padding: 10px 18px;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            border-radius: 20px;
-            cursor: pointer;
-            white-space: nowrap;
-            font-weight: 500;
-            font-size: 13px;
+            padding: 10px 18px; background-color: var(--card-bg); border: 1px solid var(--border-color);
+            color: var(--text-color); border-radius: 20px; cursor: pointer; white-space: nowrap;
+            font-weight: 500; font-size: 13px;
         }
+        .step-tab.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
 
-        .step-tab.active {
-            background-color: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .main-layout {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 30px;
-        }
-
-        .video-container {
-            position: sticky;
-            top: 20px;
-        }
+        .main-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; }
+        .video-container { position: sticky; top: 20px; }
 
         .iframe-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            background-color: #000;
+            position: relative; padding-bottom: 56.25%; height: 0;
+            border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); background-color: #000;
         }
-
-        .iframe-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        .iframe-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         .subtitles-box {
-            margin-top: 15px;
-            background-color: var(--sub-bg);
-            color: var(--sub-text);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 15px;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            margin-top: 15px; background-color: var(--sub-bg); color: var(--sub-text);
+            padding: 15px; border-radius: 8px; font-size: 15px; min-height: 60px;
+            display: flex; align-items: center; justify-content: center; text-align: center;
             border-left: 5px solid var(--primary-color);
         }
 
         .content-card {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid var(--border-color);
-            max-height: 80vh;
-            overflow-y: auto;
+            background-color: var(--card-bg); padding: 30px; border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid var(--border-color);
+            max-height: 85vh; overflow-y: auto;
         }
+        .content-card h2 { margin-top: 0; font-size: 20px; color: var(--text-color); }
 
-        .content-card h2 { margin-top: 0; }
-
-        .meta-info {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-            font-size: 13px;
-            color: #7f8c8d;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+        /* БЛОК КРАТКОЙ СУТИ ВИДЕО */
+        .summary-box {
+            background-color: rgba(0, 123, 255, 0.03);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px; margin-bottom: 20px; border-radius: 4px;
         }
+        .summary-box h3 { margin: 0 0 8px 0; font-size: 15px; color: var(--primary-color); }
+        .summary-box p { margin: 0; font-size: 13.5px; color: var(--text-color); }
 
+        /* ИНТЕРАКТИВНЫЙ СПИСОК УПРАЖНЕНИЙ */
+        .exercises-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
         .exercise-item {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 6px; padding: 12px 15px; cursor: pointer; transition: all 0.2s;
         }
+        .exercise-item:hover { border-color: var(--primary-color); background-color: rgba(0, 123, 255, 0.01); }
+        .exercise-item h4 { margin: 0 0 6px 0; display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+        .time-tag { font-size: 11px; color: white; background-color: var(--primary-color); padding: 3px 8px; border-radius: 10px; font-weight: bold; }
+        .exercise-item p { margin: 0; font-size: 12.5px; color: #7f8c8d; line-height: 1.4; }
+        .exercise-item.active { border-color: var(--primary-color); background-color: rgba(0, 123, 255, 0.04); }
 
-        .exercise-item:hover {
-            border-color: var(--primary-color);
-            background-color: rgba(0, 123, 255, 0.02);
+        /* ВСПЛЫВАЮЩИЙ ДЛЯ ПОЛНОГО ТЕКСТА АККОРДЕОН */
+        .full-text-accordion { border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; margin-top: 15px; }
+        .accordion-trigger {
+            width: 100%; background-color: #f8f9fa; border: none; padding: 12px 15px;
+            text-align: left; font-weight: bold; font-size: 13.5px; color: var(--text-color);
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
         }
+        .accordion-trigger:hover { background-color: #e9ecef; }
+        .accordion-content { display: none; padding: 15px; background-color: #ffffff; border-top: 1px solid var(--border-color); font-size: 13.5px; color: #34495e; max-height: 300px; overflow-y: auto; }
 
-        .exercise-item h4 {
-            margin: 0 0 8px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .time-tag {
-            font-size: 11px;
-            color: white;
-            background-color: var(--primary-color);
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-weight: bold;
-        }
-
-        .exercise-item p {
-            margin: 0;
-            font-size: 13.5px;
-            color: #7f8c8d;
-        }
-
-        .exercise-item.active {
-            border-color: var(--primary-color);
-            background-color: rgba(0, 123, 255, 0.05);
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.1);
-        }
-
-        .download-box {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .btn-action {
-            flex: 1;
-            padding: 12px;
-            text-align: center;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 13px;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-        }
+        .download-box { display: flex; gap: 15px; margin-top: 20px; }
+        .btn-action { flex: 1; padding: 12px; text-align: center; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 13px; display: inline-block; border: none; cursor: pointer; }
         .btn-blue { background-color: #007bff; }
         .btn-green { background-color: #28a745; }
 
-        /* СТИЛИ МОДАЛЬНОГО ОКНА ДЛЯ ОТОБРАЖЕНИЯ PDF */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.85);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .modal-content {
-            background-color: white;
-            border-radius: 12px;
-            max-width: 1000px;
-            width: 100%;
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 32px;
-            font-weight: bold;
-            color: #7f8c8d;
-            cursor: pointer;
-            transition: color 0.2s;
-            z-index: 1010;
-        }
+        /* МОДАЛЬНОЕ ОКНО */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: white; border-radius: 12px; max-width: 1000px; width: 100%; height: 90vh; display: flex; flex-direction: column; padding: 20px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .close-modal { position: absolute; top: 10px; right: 20px; font-size: 32px; font-weight: bold; color: #7f8c8d; cursor: pointer; }
         .close-modal:hover { color: #000; }
-        
-        /* Контейнер для точного масштабирования PDF-документа */
-        .pdf-viewer-container {
-            flex-grow: 1;
-            width: 100%;
-            height: 100%;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            overflow: hidden;
-            background-color: #f1f2f6;
-            margin-top: 15px;
-        }
-
-        .pdf-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .modal-header-area {
-            text-align: left;
-            padding-right: 40px;
-        }
-
-        .modal-btn-print {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            align-self: flex-start;
-            margin-top: 15px;
-            transition: background 0.2s;
-        }
-        .modal-btn-print:hover { background-color: #218838; }
+        .pdf-viewer-container { flex-grow: 1; width: 100%; height: 100%; border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; background-color: #f1f2f6; margin-top: 15px; }
+        .pdf-frame { width: 100%; height: 100%; border: none; }
+        .modal-header-area { text-align: left; padding-right: 40px; }
+        .modal-btn-print { background-color: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; align-self: flex-start; margin-top: 15px; }
 
         @media (max-width: 850px) {
             .main-layout { grid-template-columns: 1fr; gap: 15px; }
@@ -381,40 +196,23 @@
             </div>
         </div>
 
-        <!-- КАРТОЧКА С КОНТЕНТОМ, КОТОРЫЙ ТЕПЕРЬ МЕНЯЕТСЯ АВТОМАТИЧЕСКИ -->
-        <div class="content-card" id="dynamic-content">
-            <!-- Начальное заполнение для Шага 6, так как вкладки инициализируются динамически -->
-            <h2>Шаг 6: Статические упражнения</h2>
-            <div class="meta-info">
-                <span>⏱️ Время: ~6 минут</span>
-                <span>🔁 По 10 повторений</span>
-            </div>
-            <div class="exercises-list">
-                <div class="exercise-item active">
-                    <h4><span>Упражнение №1</span> <span class="time-tag">0:10</span></h4>
-                    <p>Зафиксируйте взгляд. Наклоны головы.</p>
-                </div>
-            </div>
-        </div>
+        <!-- КАРТОЧКА С ДВУМЯ РЕЖИМАМИ: СЖАТЫЙ АНОНС + ПОЛНАЯ СТАТЬЯ РЯДОМ -->
+        <div class="content-card" id="dynamic-content"></div>
     </div>
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО С ИНТЕГРИРОВАННЫМ PDF -->
 <div id="landolt-modal" class="modal-overlay" onclick="closeLandoltModal(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
         <span class="close-modal" onclick="closeLandoltModal(event)">&times;</span>
-        
         <div class="modal-header-area">
             <h2 style="margin: 0; color:#007bff; font-size: 22px;">Оригинальная таблица Головина-Ландольта (ГОСТ)</h2>
             <p style="color:#7f8c8d; font-size:13px; margin: 5px 0 0 0;">
                 Медицинский калибровочный документ. Используйте встроенные инструменты для масштабирования и точной печати на А4.
             </p>
         </div>
-        
         <div class="pdf-viewer-container">
             <iframe id="pdf-frame" class="pdf-frame" src="landolt_table.pdf"></iframe>
         </div>
-
         <button class="modal-btn-print" onclick="printPDF()">Распечатать таблицу</button>
     </div>
 </div>
@@ -425,62 +223,169 @@
         5: "f2ZAKk_u4CU", 6: "u4YLm5xKJL0", 7: "aOjabwu5GzU", 8: "NnhBp5lhLZg"
     };
 
-    // ТОЧЕЧНЫЙ КИРПИЧИК КОРРЕКТНЫХ ДАННЫХ ДЛЯ КАЖДОГО ШАГА
+    // БАЗА ДАННЫХ ЛЕГО: Разделена на Короткую суть (анонс) и Полную главу документа DD
     const stepContents = {
-        1: { title: "Шаг 1: Введение в методику", time: "~5 минут", info: "Ознакомление", name: "Вводная часть", desc: "Общие правила проведения гимнастики для глаз." },
-        2: { title: "Шаг 2: Подготовка и разогрев", time: "~3 минуты", info: "Базовый уровень", name: "Разогрев мышц", desc: "Легкие круговые движения и пальминг." },
-        3: { title: "Шаг 3: Динамическая разминка", time: "~4 минуты", info: "Активная фаза", name: "Движения по осям", desc: "Повороты глаз вверх-вниз, влево-вправо." },
-        4: { title: "Шаг 4: Фокусировка", time: "~5 минут", info: "Акцент на хрусталик", name: "Близко-далеко", desc: "Перевод взгляда с кончика носа на дальний объект." },
-        5: { title: "Шаг 5: Работа с аккомодацией", time: "~6 минут", info: "Продвинутый уровень", name: "Слежение", desc: "Плавное ведение взгляда по сложным траекториям." },
-        6: { title: "Шаг 6: Статические упражнения", time: "~6 минут", info: "По 10 повторений", name: "Упражнение №1", desc: "Зафиксируйте взгляд. Наклоны головы." },
-        7: { title: "Шаг 7: Расслабление", time: "~4 минуты", info: "Снятие напряжения", name: "Моргание", desc: "Быстрое и легкое моргание для отдыха цилиарной мышцы." },
-        8: { title: "Шаг 8: Результаты практики", time: "~8 минут", info: "Итоги системы", name: "Анализ прогресса", desc: "Подведение итогов, фиксация результатов в дневнике зрения." }
+        1: {
+            title: "Шаг 1: Правила старта",
+            summary: "В этом видео объясняется философия методики. Автор рассказывает, почему важно строго придерживаться оригинального алгоритма без изменений, чтобы получить запланированный результат.",
+            hasExercises: false,
+            fullText: "Я считаю, что каждому человеку лучше создать собственную систему, чем всю жизнь пользоваться чугой. Именно так появилась и эта методика. Я создавал её постепенно, проверяя каждое изменение на практике и фиксируя результаты. Если вы сможете создать свою систему, я считаю, что она принесёт вам больше пользы, чем любая чужая, включая мою. Но если вы решили проверить именно мою систему, выполняйте её в точности так, как она описана в этом документе и показана в видеороликах на моём канале. Не изменяйте упражнения, их последовательность и отдельные элементы. Если вы что-либо изменили, значит вы выполняете уже другую систему, а не мою."
+        },
+        2: {
+            title: "Шаг 2: История создания методики",
+            summary: "Личный опыт Дениса Дубинского: почему стандартные очки стали ухудшать зрение, как возникла идея отказаться от 'костылей для глаз' и за какой срок сформировалась система.",
+            hasExercises: false,
+            fullText: "Около десяти лет назад моё зрение заметно ухудшилось. Я обратился к офтальмологу, который проверил зрение и выписал мне очки. Я несколько раз попробовал их носить, но быстро понял, что меня не устраивает мысль привыкнуть к этим «костылям для глаз». В очках я видел идеально, но стоило их снять как моё зрение становилось намного хуже... Тогда я решил не приспосабливаться к ухудшению зрения, а попытаться его восстановить. Я начал изучать существующие методики, книги, статьи и видеоролики... Примерно в течение года я изменял упражнения, добавлял новые элементы, исключал те, которые не давали результата. Постепенно я сформировал систему, которую выполнял примерно по десять минут в день."
+        },
+        3: {
+            title: "Шаг 3: Как контролировать прогресс",
+            summary: "В видео показан точный метод замера результатов: использование офтальмологической таблицы Ландольта на фиксированном расстоянии 4 метра и ведение записей.",
+            hasExercises: false,
+            fullText: "Для проверки зрения я использовал таблицу Ландольта, которая применяется в кабинетах офтальмологов. Она состоит из 12 рядов колец с разрывами... Для проверки зрения я всегда становился на одно и то же место (около четырёх метров) перед таблицей. Для этого я сделал отметку на полу... После каждого выполненного комплекса упражнений я проверял каждый глаз отдельно и записывал в таблицу Excel номер строки... В начале занятий один глаз различал восьмую строку таблицы, второй — седьмую. После 45 занятия один глаз различал уже четвёртую строку, второй — третью."
+        },
+        4: {
+            title: "Шаг 4: 5 Основных принципов",
+            summary: "Главный теоретический блок: без этих пяти правил упражнения не принесут пользы. Разбор фиксации, дыхания и ключевого феномена «Фотографирования точки» (ФТ).",
+            hasExercises: false,
+            fullText: "4.1. Фиксация на одной точке: взгляд постоянно фиксируется на одной и той же точке на стене.<br>4.2. Максимальная амплитуда: движения головы выполняются на максимум.<br>4.3. Дыхание: в статике вверх — вдох, вниз — выдох. В динамике вперёд — вдох, назад — выдох. Вдох и выдох выполняются строго во время движения.<br>4.4. «Фотографирование» точки (ФТ): в каждом крайнем положении выполняется кратковременная максимальная фиксация взгляда на точке. Слегка приподнимите брови, сосредоточьтесь и постарайтесь увидеть точку как можно чётче.<br>4.5. Концентрация внимания: всё внимание на точке. Посторонние мысли мягко возвращайте назад."
+        },
+        5: {
+            title: "Шаг 5: Подготовка рабочего места",
+            summary: "Как правильно обустроить зону тренировок дома: выбор положения тела, крепление проверочной точки на уровне глаз на дистанции от 2 до 5 метров.",
+            hasExercises: false,
+            fullText: "5.1. Выбор места: перед вами не должно быть предметов, которые закрывают точку. Статическую часть можно выполнять сидя по-турецки, на стуле или стоя. При динамической части должно быть пространство для шага.<br>5.2. Выбор точки: Нарисуйте точку на листе бумаги и повесьте на стену на уровне ваших глаз. Расстояние — около 2-5 метров.<br>5.3. Проверочная таблица: Ссылку можно скачать под видео. Закрепите её для регулярной проверки зрения с одинаковой отметки на полу.<br>5.4. Фиксация результатов: записывайте данные каждого глаза в таблицу Microsoft Excel или тетрадь."
+        },
+        6: {
+            title: "Шаг 6: Интерактивный статический комплекс",
+            summary: "Видео-руководство по 11 статическим упражнениям. Все движения выполняются по 10 повторений с максимальной амплитудой, дыханием и фиксацией «ФТ» в крайних точках.",
+            hasExercises: true,
+            fullText: "Все упражнения этого комплекса выполняются по 10 повторений. Во всех упражнениях вдох и выдох выполняются во время движения, а не после достижения крайнего положения. В каждом крайнем положении выполняется «ФТ».",
+            items: [
+                { id: 1, time: "0:10", name: "Упражнение №1", desc: "Зафиксируйте взгляд. Максимально голову назад (вдох + ФТ), максимально вниз до груди (выдох + ФТ)." },
+                { id: 2, time: "0:45", name: "Упражнение №2", desc: "Выполнение упражнения №1, но с максимально повернутой головой вправо." },
+                { id: 3, time: "1:20", name: "Упражнение №3", desc: "Выполнение упражнения №1, но с максимально повернутой головой влево." },
+                { id: 4, time: "1:55", name: "Упражнение №4", desc: "Поворот головы вправо (вдох + ФТ), затем плавно поворот влево (выдох + ФТ)." },
+                { id: 5, time: "2:30", name: "Упражнение №5", desc: "Выполнение упражнения №4, но с максимально запрокинутой назад головой." },
+                { id: 6, time: "3:05", name: "Упражнение №6", desc: "Выполнение упражнения №4, но с подбородком, прижатым к грудной клетке." },
+                { id: 7, time: "3:40", name: "Упражнение №7", desc: "Движение головы по диагонали из нижнего левого положения в верхнее правое. ФТ." },
+                { id: 8, time: "4:15", name: "Упражнение №8", desc: "Движение по второй диагонали: из нижнего правого в верхнее левое. ФТ." },
+                { id: 9, time: "4:50", name: "Упражнение №9", desc: "Круговые вращения головой по часовой стрелке. В нижней точке — ФТ." },
+                { id: 10, time: "5:30", name: "Упражнение №10", desc: "Круговые вращения головой против часовой стрелки. В нижней точке — ФТ." },
+                { id: 11, time: "6:10", name: "Упражнение №11. Массаж", desc: "Закрыть глаза, прижать ладонями со стороны мизинцев. По 10 кругов в каждую сторону." }
+            ]
+        },
+        7: {
+            title: "Шаг 7: Динамический комплекс в движении",
+            summary: "Анимация и демонстрация упражнений в шаге. Вес тела переносится плавно, опорная нога неподвижна. Каждое задание выполняется по 10 раз.",
+            hasExercises: true,
+            fullText: "Все упражнения выполняются по 10 повторений плавными непрерывными шагами. Опорная нога неподвижна, вес тела переносится вперёд и назад со второй ноги.",
+            items: [
+                { id: 1, time: "0:15", name: "Упражнение №1", desc: "Шаг вперёд (вдох + ФТ на точке), плавное непрерывное движение назад (выдох + ФТ в конечной точке)." },
+                { id: 2, time: "1:00", name: "Упражнение №2", desc: "Голова повернута вправо на 90°. Движение вперёд — взгляд на точке. Движение назад — взгляд переводится на стену сзади." },
+                { id: 3, time: "1:45", name: "Упражнение №3", desc: "Зеркальное отображение упражнения №2 (Голова влево, шаг левой ногой)." },
+                { id: 4, time: "2:30", name: "Упражнение №4", desc: "Голова запрокинута назад. Вперёд — взгляд на точку. Назад — взгляд переводится максимально вверх." },
+                { id: 5, time: "3:15", name: "Упражнение №5", desc: "Подбородок прижат к груди. Вперёд — фиксация на точке. Назад — перевод взгляда максимально вниз." }
+            ]
+        },
+        8: {
+            title: "Шаг 8: Результаты и мотивация",
+            summary: "Финальное видео: ежедневная практика по 10 минут даёт плоды. Призыв автора не верить на слово, а тестировать систему на своём опыте, ведя точный дневник.",
+            hasExercises: false,
+            fullText: "После того как система была полностью сформирована, я начал выполнять её ежедневно. Каждое занятие занимало около 10 минут. Результаты проверки зрения убедили меня продолжить работу... Моя цель — поделиться системой, которая дала результат лично мне. Если вы решите проверить её на себе, ведите собственные записи, сравнивайте результаты и делайте выводы на основании собственных наблюдений... Не верьте ни мне, никому-либо другому на слово. Проверяйте всё на практике, фиксируйте результаты и делайте собственные выводы. Я уверен, что эта система принесёт вам пользу. Пользуйтесь."
+        }
     };
 
-    let currentStep = 6;
+    let currentStep = 1;
+    const exerciseTimestamps = {
+        6: { 1: 10, 2: 45, 3: 80, 4: 115, 5: 150, 6: 185, 7: 220, 8: 255, 9: 290, 10: 330, 11: 370 },
+        7: { 1: 15, 2: 60, 3: 105, 4: 150, 5: 195 }
+    };
 
     function initPlayer() {
-        const player = document.getElementById('video-player');
-        player.src = "https://www.youtube.com/embed/" + videoIDs[currentStep] + "?enablejsapi=1";
-        // При первой загрузке тоже ставим текст выбранного шага
-        updateContentCard(currentStep);
+        const initialTab = document.querySelector('.steps-nav .step-tab:first-child');
+        if (initialTab) initialTab.classList.add('active');
+        document.getElementById('video-player').src = "https://www.youtube.com/embed/" + videoIDs[1] + "?enablejsapi=1";
+        updateContentCard(1);
     }
 
     window.onload = initPlayer;
 
-    // ТОЧЕЧНО ОБНОВЛЕННАЯ ФУНКЦИЯ ПЕРЕКЛЮЧЕНИЯ (ОБНОВЛЯЕТ И ВИДЕО, И ТЕКСТ)
     function switchStep(stepNum, element) {
         currentStep = stepNum;
         const tabs = document.querySelectorAll('.step-tab');
         tabs.forEach(tab => tab.classList.remove('active'));
         element.classList.add('active');
 
-        const videoId = videoIDs[stepNum];
-        document.getElementById('video-player').src = "https://www.youtube.com/embed/" + videoId + "?enablejsapi=1&autoplay=1";
-        
-        // Магия Лего: обновляем текст в правой карточке
+        document.getElementById('video-player').src = "https://www.youtube.com/embed/" + videoIDs[stepNum] + "?enablejsapi=1&autoplay=1";
         updateContentCard(stepNum);
     }
 
-    // ВСПОМОГАТЕЛЬНЫЙ КИРПИЧИК ДЛЯ ПЕРЕЗАПИСИ ПРАВОЙ ЧАСТИ
+    // ЛЕГО-КИРПИЧИК: Генерация компактного контента с кнопкой разворачивания полной статьи
     function updateContentCard(stepNum) {
         const data = stepContents[stepNum];
         const container = document.getElementById('dynamic-content');
         if (!data || !container) return;
 
+        let exercisesHTML = '';
+        if (data.hasExercises) {
+            exercisesHTML += `<div class="exercises-list">`;
+            data.items.forEach(item => {
+                exercisesHTML += `
+                    <div class="exercise-item" onclick="seekToExercise(${item.id}, event)">
+                        <h4><span>${item.name}</span> <span class="time-tag">${item.time}</span></h4>
+                        <p>${item.desc}</p>
+                    </div>
+                `;
+            });
+            exercisesHTML += `</div>`;
+        }
+
         container.innerHTML = `
             <h2>${data.title}</h2>
-            <div class="meta-info">
-                <span>⏱️ Время: ${data.time}</span>
-                <span>🔁 ${data.info}</span>
+            
+            <!-- Основная краткая мысль видео -->
+            <div class="summary-box">
+                <h3>💡 Краткий обзор видео:</h3>
+                <p>${data.summary}</p>
             </div>
-            <div class="exercises-list">
-                <div class="exercise-item active">
-                    <h4><span>${data.name}</span> <span class="time-tag">0:10</span></h4>
-                    <p>${data.desc}</p>
+
+            <!-- Список интерактивных тайм-кодов (если они есть в этой главе) -->
+            ${exercisesHTML}
+
+            <!-- Аккордеон с полным оригинальным текстом статьи -->
+            <div class="full-text-accordion">
+                <button class="accordion-trigger" onclick="toggleAccordion()">
+                    📖 Читать полный текст статьи руководства <span id="arrow-icon">▼</span>
+                </button>
+                <div class="accordion-content" id="accordion-text">
+                    ${data.fullText}
                 </div>
             </div>
         `;
+    }
+
+    function toggleAccordion() {
+        const content = document.getElementById('accordion-text');
+        const arrow = document.getElementById('arrow-icon');
+        if (content.style.display === 'block') {
+            content.style.display = 'none';
+            arrow.innerText = '▼';
+        } else {
+            content.style.display = 'block';
+            arrow.innerText = '▲';
+        }
+    }
+
+    function seekToExercise(itemId, event) {
+        const stepTimeMap = exerciseTimestamps[currentStep];
+        if (stepTimeMap && stepTimeMap[itemId]) {
+            const seconds = stepTimeMap[itemId];
+            document.getElementById('video-player').src = "https://www.youtube.com/embed/" + videoIDs[currentStep] + "?enablejsapi=1&autoplay=1&start=" + seconds;
+            
+            const items = document.querySelectorAll('.exercise-item');
+            items.forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
     }
 
     function toggleTheme() {
@@ -490,22 +395,11 @@
         btn.innerText = body.classList.contains('green-theme') ? "Переключить на Синюю тему" : "Переключить на Зелёную тему";
     }
 
-    function openLandoltModal() {
-        document.getElementById('landolt-modal').style.display = 'flex';
-    }
-
-    function closeLandoltModal(event) {
-        document.getElementById('landolt-modal').style.display = 'none';
-    }
-
+    function openLandoltModal() { document.getElementById('landolt-modal').style.display = 'flex'; }
+    function closeLandoltModal(event) { document.getElementById('landolt-modal').style.display = 'none'; }
     function printPDF() {
         const iframe = document.getElementById('pdf-frame');
-        try {
-            iframe.contentWindow.focus();
-            iframe.contentWindow.print();
-        } catch (e) {
-            window.open(iframe.src, '_blank');
-        }
+        try { iframe.contentWindow.focus(); iframe.contentWindow.print(); } catch (e) { window.open(iframe.src, '_blank'); }
     }
 </script>
 
