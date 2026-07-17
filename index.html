@@ -56,25 +56,20 @@
         .step-tab { padding: 10px 18px; background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 20px; cursor: pointer; white-space: nowrap; font-weight: 500; font-size: 13px; }
         .step-tab.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
 
-        /* ПАНЕЛЬ ПЕРЕКЛЮЧЕНИЯ РЕЖИМОВ */
         .mode-switcher-panel { display: none; gap: 10px; margin-bottom: 15px; }
         .mode-btn { flex: 1; padding: 12px; border: 2px solid var(--border-color); background-color: var(--card-bg); color: var(--text-color); font-weight: bold; border-radius: 8px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 14px; transition: all 0.2s; }
         .mode-btn.active { border-color: var(--primary-color); background-color: var(--primary-color); color: white; }
 
         .visual-display-zone { position: relative; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); background-color: #000; margin-bottom: 20px; }
         
-        /* ЗОНА ВИДЕО */
         .video-wrapper { padding-bottom: 56.25%; height: 0; position: relative; display: block; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* ЗОНА АТЛАСА (АНИМАЦИИ) */
-        .atlas-wrapper { display: none; height: 400px; background-color: #2c3e50; position: relative; color: white; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
+        .atlas-wrapper { display: none; height: 380px; background-color: #2c3e50; position: relative; color: white; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; }
         
-        /* Стили демонстрационного анимационного ряда */
-        .animation-screen { width: 120px; height: 120px; border-radius: 50%; background-color: rgba(255,255,255,0.1); border: 3px dashed rgba(255,255,255,0.4); display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 20px; }
-        .moving-dot { width: 30px; height: 30px; background-color: #55efc4; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; position: absolute; box-shadow: 0 0 15px #55efc4; }
+        .animation-screen { width: 110px; height: 110px; border-radius: 50%; background-color: rgba(255,255,255,0.1); border: 3px dashed rgba(255,255,255,0.4); display: flex; justify-content: center; align-items: center; position: relative; margin-bottom: 15px; }
+        .moving-dot { width: 26px; height: 26px; background-color: #55efc4; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; position: absolute; box-shadow: 0 0 15px #55efc4; }
         
-        /* Траектории для разных типов упражнений */
         .anim-vertical { animation: moveVert 2s infinite ease-in-out; }
         .anim-horizontal { animation: moveHoriz 2s infinite ease-in-out; }
         .anim-diagonal-1 { animation: moveDiag1 2s infinite ease-in-out; }
@@ -82,11 +77,11 @@
         .anim-circle { animation: moveCircle 3s infinite linear; }
         .anim-static { scale: 1.2; }
 
-        @keyframes moveVert { 0%, 100% { top: 10px; } 50% { top: 80px; } }
-        @keyframes moveHoriz { 0%, 100% { left: 10px; } 50% { left: 80px; } }
-        @keyframes moveDiag1 { 0%, 100% { top: 10px; left: 10px; } 50% { top: 80px; left: 80px; } }
-        @keyframes moveDiag2 { 0%, 100% { top: 80px; left: 10px; } 50% { top: 10px; left: 80px; } }
-        @keyframes moveCircle { 0% { transform: rotate(0deg) translate(40px) rotate(0deg); } 100% { transform: rotate(360deg) translate(40px) rotate(-360deg); } }
+        @keyframes moveVert { 0%, 100% { top: 8px; } 50% { top: 72px; } }
+        @keyframes moveHoriz { 0%, 100% { left: 8px; } 50% { left: 72px; } }
+        @keyframes moveDiag1 { 0%, 100% { top: 8px; left: 8px; } 50% { top: 72px; left: 72px; } }
+        @keyframes moveDiag2 { 0%, 100% { top: 72px; left: 8px; } 50% { top: 8px; left: 72px; } }
+        @keyframes moveCircle { 0% { transform: rotate(0deg) translate(36px) rotate(0deg); } 100% { transform: rotate(360deg) translate(36px) rotate(-360deg); } }
 
         .atlas-controls { display: flex; gap: 5px; justify-content: center; align-items: center; width: 100%; flex-wrap: wrap; margin-top: auto; }
         .atlas-nav-btn { background-color: rgba(255,255,255,0.15); border: none; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
@@ -102,16 +97,17 @@
         .summary-box h3 { margin: 0 0 8px 0; font-size: 15px; color: var(--primary-color); }
         .summary-box p { margin: 0; font-size: 14px; color: var(--text-color); }
 
-        .exercises-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-        .exercise-item { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px 15px; cursor: pointer; transition: all 0.2s; display: flex; gap: 15px; align-items: center; }
-        .exercise-item:hover { border-color: var(--primary-color); background-color: rgba(0, 123, 255, 0.01); }
-        .exercise-item.active { border-color: var(--primary-color); background-color: rgba(0, 123, 255, 0.04); box-shadow: inset 4px 0 0 var(--primary-color); }
-        .exercise-info { flex-grow: 1; }
-        .exercise-item h4 { margin: 0 0 4px 0; display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
-        .time-tag { font-size: 11px; color: white; background-color: var(--primary-color); padding: 2px 7px; border-radius: 10px; font-weight: bold; }
-        .exercise-item p { margin: 0; font-size: 13px; color: #7f8c8d; line-height: 1.4; }
+        /* ЭЛЕМЕНТЫ КОМПАКТНОЙ ЗОНЫ ТЕКСТА */
+        .exercise-selector-wrapper { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .exercise-select-dropdown { width: 100%; padding: 12px 15px; font-size: 15px; font-weight: bold; color: var(--text-color); background-color: var(--card-bg); border: 2px solid var(--primary-color); border-radius: 8px; cursor: pointer; outline: none; }
+        
+        .focused-exercise-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; box-shadow: inset 5px 0 0 var(--primary-color); animation: fadeIn 0.3s ease; }
+        .focused-exercise-card h4 { margin: 0 0 10px 0; display: flex; justify-content: space-between; align-items: center; font-size: 16px; color: var(--text-color); }
+        .focused-exercise-card p { margin: 0; font-size: 14px; color: #34495e; line-height: 1.6; }
 
-        .full-text-accordion { border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; margin-top: 15px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .full-text-accordion { border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; margin-top: 20px; }
         .accordion-trigger { width: 100%; background-color: #f8f9fa; border: none; padding: 12px 15px; text-align: left; font-weight: bold; font-size: 13.5px; color: var(--text-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         .accordion-trigger:hover { background-color: #e9ecef; }
         .accordion-content { display: none; padding: 15px; background-color: #ffffff; border-top: 1px solid var(--border-color); font-size: 14px; color: #34495e; max-height: 300px; overflow-y: auto; }
@@ -146,7 +142,6 @@
 </div>
 
 <div class="container">
-    <!-- Навигация по Шагам -->
     <div class="steps-nav">
         <button class="step-tab" onclick="switchStep(1, this)">Шаг 1</button>
         <button class="step-tab" onclick="switchStep(2, this)">Шаг 2</button>
@@ -158,30 +153,24 @@
         <button class="step-tab" onclick="switchStep(8, this)">Шаг 8</button>
     </div>
 
-    <!-- Две кнопки переключения режимов (Видео / Атлас) -->
     <div class="mode-switcher-panel" id="mode-panel">
         <button class="mode-btn active" id="btn-mode-video" onclick="setAppMode('video')">📺 Режим: Видео-урок</button>
         <button class="mode-btn" id="btn-mode-atlas" onclick="setAppMode('atlas')">🔄 Режим: Интерактивный Атлас</button>
     </div>
 
-    <!-- Интерактивная Визуальная Зона -->
     <div class="visual-display-zone">
-        <!-- Блок стандартного Видео -->
         <div class="video-wrapper" id="video-zone">
             <iframe id="video-player" src="" allowfullscreen></iframe>
         </div>
 
-        <!-- Блок Атласа (Анимаций/Графики) вместо видео -->
         <div class="atlas-wrapper" id="atlas-zone">
             <h3 id="atlas-title" style="margin: 0 0 5px 0; font-size: 16px; color: #55efc4;">Упражнение №1</h3>
             <p id="atlas-mini-desc" style="margin: 0 0 15px 0; font-size: 13px; color: #b2bec3; text-align: center;">Траектория движения</p>
             
             <div class="animation-screen">
-                <!-- Внутри этого круга точка имитирует вектор движения головы или взгляда -->
                 <div class="moving-dot anim-vertical" id="animated-vector">👀</div>
             </div>
 
-            <!-- Цифровая навигация внутри Атласа -->
             <div class="atlas-controls" id="atlas-nav-buttons"></div>
         </div>
     </div>
@@ -190,7 +179,6 @@
         📋 Текстовое описание и важные нюансы текущего шага находятся чуть ниже.
     </div>
 
-    <!-- Карточка контента и списка упражнений -->
     <div class="content-card" id="dynamic-content"></div>
 
     <div class="download-box">
@@ -206,15 +194,15 @@
     };
 
     const stepContents = {
-        1: { title: "Шаг 1: Правила старта", summary: "В этом видео объясняется философия методики...", hasExercises: false, fullText: "Текст Шага 1..." },
-        2: { title: "Шаг 2: История создания методики", summary: "Личный опыт автора...", hasExercises: false, fullText: "Текст Шага 2..." },
-        3: { title: "Шаг 3: Как контролировать прогресс", summary: "Методы фиксации результатов...", hasExercises: false, fullText: "Текст Шага 3..." },
-        4: { title: "Шаг 4: 5 Основных принципов", summary: "Базовая теория правильной тренировки...", hasExercises: false, fullText: "Текст Шага 4..." },
-        5: { title: "Шаг 5: Подготовка рабочего места", summary: "Обустройство пространства дома...", hasExercises: false, fullText: "Текст Шага 5..." },
+        1: { title: "Шаг 1: Правила старта", summary: "В этом видео объясняется философия методики. Автор рассказывает, почему важно строго придерживаться оригинального алгоритма без изменений, чтобы получить запланированный результат.", hasExercises: false, fullText: "Я считаю, что каждому человеку лучше создать собственную систему, чем всю жизнь пользоваться чужой..." },
+        2: { title: "Шаг 2: История создания методики", summary: "Личный опыт Дениса Дубинского...", hasExercises: false, fullText: "Около десяти лет назад моё зрение заметно ухудшилось..." },
+        3: { title: "Шаг 3: Как контролировать прогресс", summary: "В видео показан точный метод замера результатов...", hasExercises: false, fullText: "Для проверки зрения я использовал таблицу Ландольта..." },
+        4: { title: "Шаг 4: 5 Основных принципов", summary: "Главный теоретический блок...", hasExercises: false, fullText: "4.1. Фиксация на одной точке..." },
+        5: { title: "Шаг 5: Подготовка рабочего места", summary: "Как правильно обустроить зону тренировок дома...", hasExercises: false, fullText: "5.1. Выбор места..." },
         
         6: {
             title: "Шаг 6: Интерактивный статический комплекс",
-            summary: "11 статических упражнений. Изучайте технику через видео или переключитесь в режим «Атлас» для пошагового разбора.",
+            summary: "Комплекс состоит из 11 упражнений. Выберите упражнение из списка или используйте кнопки навигации, чтобы увидеть описание.",
             hasExercises: true,
             fullText: "Все статические упражнения выполняются по 10 повторений...",
             items: [
@@ -233,7 +221,7 @@
         },
         7: {
             title: "Шаг 7: Динамический комплекс в движении",
-            summary: "5 динамических упражнений. Синхронизация шагов, дыхания и переключения фокуса взгляда.",
+            summary: "Комплекс состоит из 5 упражнений в движении. Выберите упражнение для детального разбора техники.",
             hasExercises: true,
             fullText: "Все упражнения выполняются в движении плавными шагами...",
             items: [
@@ -248,8 +236,8 @@
     };
 
     let currentStep = 1;
-    let appMode = "video"; // Доступные режимы: "video" или "atlas"
-    let activeExerciseID = 1; // Текущее выбранное упражнение в комплексе
+    let appMode = "video"; 
+    let activeExerciseID = 1; 
 
     const exerciseTimestamps = {
         6: { 1: 10, 2: 45, 3: 80, 4: 115, 5: 150, 6: 185, 7: 220, 8: 255, 9: 290, 10: 330, 11: 370 },
@@ -266,18 +254,17 @@
 
     function switchStep(stepNum, element) {
         currentStep = stepNum;
-        activeExerciseID = 1; // сбрасываем на первое упражнение
+        activeExerciseID = 1; 
         
         document.querySelectorAll('.step-tab').forEach(tab => tab.classList.remove('active'));
         element.classList.add('active');
 
-        // Показываем или скрываем панель переключения режимов (нужна только для 6 и 7)
         const modePanel = document.getElementById('mode-panel');
         if (stepNum === 6 || stepNum === 7) {
             modePanel.style.display = "flex";
         } else {
             modePanel.style.display = "none";
-            setAppMode('video'); // Принудительно возвращаем видео на обычных шагах
+            setAppMode('video'); 
         }
 
         resetVideoSource(stepNum, 0);
@@ -303,22 +290,20 @@
             btnVideo.classList.remove('active');
             btnAtlas.classList.add('active');
             renderAtlasNavigation();
-            selectExercise(activeExerciseID); // Обновляем графику под текущее упр.
+            syncExerciseChange(activeExerciseID, false); 
         }
     }
 
     function resetVideoSource(stepNum, startSeconds) {
         let url = "https://www.youtube.com/embed/" + videoIDs[stepNum] + "?enablejsapi=1";
-        if (startSeconds > 0) {
-            url += "&autoplay=1&start=" + startSeconds;
-        }
+        if (startSeconds > 0) { url += "&autoplay=1&start=" + startSeconds; }
         document.getElementById('video-player').src = url;
     }
 
     function updateSubtitlesText(stepNum) {
         const sub = document.getElementById('subtitles');
         if (stepContents[stepNum].hasExercises) {
-            sub.innerHTML = "🎯 Вы можете переключаться между видео и анимированным атласом. Текст внизу всегда синхронизирован!";
+            sub.innerHTML = "🎯 Выберите упражнение в выпадающем списке ниже. Видео и анимация мгновенно подстроятся!";
         } else {
             sub.innerHTML = "📋 Текстовое описание и важные нюансы текущего шага находятся чуть ниже.";
         }
@@ -329,20 +314,24 @@
         const container = document.getElementById('dynamic-content');
         if (!data || !container) return;
 
-        let exercisesHTML = '';
+        let rationalZoneHTML = '';
+        
         if (data.hasExercises) {
-            exercisesHTML += `<div class="exercises-list">`;
+            rationalZoneHTML += `
+                <div class="exercise-selector-wrapper">
+                    <label style="font-size: 13px; font-weight: bold; color: #7f8c8d;">Выберите упражнение для изучения:</label>
+                    <select class="exercise-select-dropdown" id="exercise-dropdown" onchange="handleDropdownChange(this.value)">
+            `;
+            
             data.items.forEach(item => {
-                exercisesHTML += `
-                    <div class="exercise-item" id="ex-item-${item.id}" onclick="handleExerciseClick(${item.id})">
-                        <div class="exercise-info">
-                            <h4><span>${item.name}</span> <span class="time-tag">${item.time}</span></h4>
-                            <p>${item.desc}</p>
-                        </div>
-                    </div>
-                `;
+                rationalZoneHTML += `<option value="${item.id}">${item.name}</option>`;
             });
-            exercisesHTML += `</div>`;
+
+            rationalZoneHTML += `
+                    </select>
+                </div>
+                <div id="focused-card-container"></div>
+            `;
         }
 
         container.innerHTML = `
@@ -351,7 +340,9 @@
                 <h3>💡 О чём этот шаг:</h3>
                 <p>${data.summary}</p>
             </div>
-            ${exercisesHTML}
+            
+            ${rationalZoneHTML}
+            
             <div class="full-text-accordion">
                 <button class="accordion-trigger" onclick="toggleAccordion()">
                     📖 Показать полное текстовое руководство к шагу <span id="arrow-icon">▼</span>
@@ -361,56 +352,71 @@
         `;
 
         if (data.hasExercises) {
-            highlightTextItem(activeExerciseID);
+            renderFocusedCard(activeExerciseID);
         }
     }
 
-    // Обработка клика по упражнению из нижнего списка
-    function handleExerciseClick(itemId) {
-        activeExerciseID = itemId;
+    function renderFocusedCard(itemId) {
+        const container = document.getElementById('focused-card-container');
+        if (!container) return;
+        
+        const stepData = stepContents[currentStep];
+        const item = stepData.items.find(i => i.id === itemId);
+        if (!item) return;
+
+        container.innerHTML = `
+            <div class="focused-exercise-card">
+                <h4><span>${item.name}</span> <span class="time-tag">Таймкод: ${item.time}</span></h4>
+                <p>${item.desc}</p>
+            </div>
+        `;
+    }
+
+    function handleDropdownChange(itemId) {
+        const id = parseInt(itemId);
+        activeExerciseID = id;
+        
         if (appMode === 'video') {
-            const seconds = exerciseTimestamps[currentStep][itemId] || 0;
+            const seconds = exerciseTimestamps[currentStep][id] || 0;
             resetVideoSource(currentStep, seconds);
-            document.getElementById('video-zone').scrollIntoView({ behavior: 'smooth' });
         } else {
-            selectExercise(itemId);
-            document.getElementById('atlas-zone').scrollIntoView({ behavior: 'smooth' });
+            updateAtlasState(id);
         }
-        highlightTextItem(itemId);
+        
+        renderFocusedCard(id);
     }
 
-    // Обновление состояния внутри верхнего Атласа
-    function selectExercise(itemId) {
+    function syncExerciseChange(itemId, updateDropdown = true) {
         activeExerciseID = itemId;
+        
+        if (appMode === 'atlas') {
+            updateAtlasState(itemId);
+        }
+
+        renderFocusedCard(itemId);
+
+        if (updateDropdown) {
+            const dropdown = document.getElementById('exercise-dropdown');
+            if (dropdown) dropdown.value = itemId;
+        }
+    }
+
+    function updateAtlasState(itemId) {
         const stepData = stepContents[currentStep];
         const itemData = stepData.items.find(i => i.id === itemId);
-        
         if (!itemData) return;
 
-        // 1. Меняем заголовки внутри Атласа
         document.getElementById('atlas-title').innerText = itemData.name;
         document.getElementById('atlas-mini-desc').innerText = "Направление вектора: " + itemData.time;
 
-        // 2. Меняем класс анимации у точки (имитация траектории движения)
         const dot = document.getElementById('animated-vector');
         dot.className = "moving-dot " + itemData.animClass;
 
-        // 3. Подсвечиваем активную цифру в кнопках Атласа
         document.querySelectorAll('.atlas-nav-btn').forEach(btn => btn.classList.remove('active'));
         const activeBtn = document.getElementById(`atlas-nav-btn-${itemId}`);
         if (activeBtn) activeBtn.classList.add('active');
-
-        // 4. Синхронно подсвечиваем карточку в нижнем текстовом списке
-        highlightTextItem(itemId);
     }
 
-    function highlightTextItem(itemId) {
-        document.querySelectorAll('.exercise-item').forEach(el => el.classList.remove('active'));
-        const activeItem = document.getElementById(`ex-item-${itemId}`);
-        if (activeItem) activeItem.classList.add('active');
-    }
-
-    // Генерация кнопок пагинации (1, 2, 3...) внутри Атласа
     function renderAtlasNavigation() {
         const container = document.getElementById('atlas-nav-buttons');
         const stepData = stepContents[currentStep];
@@ -418,19 +424,19 @@
 
         let html = `<button class="atlas-nav-btn" onclick="moveAtlasPrev()">◀ Назад</button>`;
         stepData.items.forEach(item => {
-            html += `<button class="atlas-nav-btn" id="atlas-nav-btn-${item.id}" onclick="selectExercise(${item.id})">${item.id}</button>`;
+            html += `<button class="atlas-nav-btn" id="atlas-nav-btn-${item.id}" onclick="syncExerciseChange(${item.id})">${item.id}</button>`;
         });
         html += `<button class="atlas-nav-btn" onclick="moveAtlasNext()">Вперед ▶</button>`;
         container.innerHTML = html;
     }
 
     function moveAtlasPrev() {
-        if (activeExerciseID > 1) { selectExercise(activeExerciseID - 1); }
+        if (activeExerciseID > 1) { syncExerciseChange(activeExerciseID - 1); }
     }
 
     function moveAtlasNext() {
         const max = stepContents[currentStep].items.length;
-        if (activeExerciseID < max) { selectExercise(activeExerciseID + 1); }
+        if (activeExerciseID < max) { syncExerciseChange(activeExerciseID + 1); }
     }
 
     function toggleAccordion() {
