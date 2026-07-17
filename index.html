@@ -156,16 +156,16 @@
         </div>
     </div>
 
-    <!-- НАШИ КНОПКИ ДЛЯ СКАЧИВАНИЯ С КОРРЕКТНЫМИ ССЫЛКАМИ -->
+    <!-- ТОЧНЫЕ НАЗВАНИЯ ВАШИХ ФАЙЛОВ С GITHUB -->
     <div class="download-box">
-        <a href="landolt-table.pdf" target="_blank" class="btn-action btn-blue">👁️ Открыть / Распечатать Таблицу Ландольта</a>
-        <a href="landolt-diary.xlsx" download class="btn-action btn-green">📥 Скачать Дневник тренировок (Excel)</a>
+        <a href="landolt_table.pdf" target="_blank" class="btn-action btn-blue">👁️ Открыть / Распечатать Таблицу Ландольта</a>
+        <a href="vision_diary.xlsx" download class="btn-action btn-green">📥 Скачать Дневник тренировок (Excel)</a>
     </div>
 
 </div>
 
 <script>
-    // БАЗА ДАННЫХ ШАГОВ С ВАШИМИ РЕАЛЬНЫМИ ВИДЕОРОЛИКАМИ
+    // БАЗА ДАННЫХ ШАГОВ С РЕАЛЬНЫМИ ВИДЕОРОЛИКАМИ
     const stepsData = {
         1: { name: "Шаг 1: Перед тем как вы начнёте", video: "https://www.youtube.com/embed/MH96n6Qfn7w", desc: "Вводное занятие. Настройка правильного психологического настроя перед тренировками и разбор структуры курса." },
         2: { name: "Шаг 2: Почему я решил создать собственную систему восстановления зрения", video: "https://www.youtube.com/embed/I1xsAlrI7uo", desc: "История автора, разбор существующих методик и научные предпосылки создания системы DD." },
@@ -250,7 +250,7 @@
         btn.innerText = body.classList.contains('green-theme') ? "Переключить на Синюю тему" : "Переключить на Зелёную тему";
     }
 
-    // Инициализация по умолчанию на Шаге 6
+    // Автостарт на Шаге 6
     switchStep(6);
 </script>
 </body>
