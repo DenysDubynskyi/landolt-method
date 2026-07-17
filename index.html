@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Методика DD — Официальный сайт</title>
+    <title>Методика DD — Интерактивное обучение</title>
     <style>
+        /* НЕЗЫБЛЕМЫЕ СТИЛИ И ТЕМЫ КУРСА */
         :root {
             --primary-color: #007bff; 
             --bg-color: #f4f7f6;
             --text-color: #2c3e50;
             --border-color: #dcdde1;
             --card-bg: #ffffff;
+            --btn-theme-bg: #28a745; 
+        }
+
+        body.green-theme {
+            --primary-color: #28a745; 
+            --bg-color: #f0f7f4;
+            --text-color: #1e3020;
+            --border-color: #cfe2ce;
+            --card-bg: #ffffff;
+            --btn-theme-bg: #007bff; 
         }
 
         body {
@@ -19,103 +30,123 @@
             color: var(--text-color);
             margin: 0; padding: 0;
             line-height: 1.6;
+            transition: all 0.3s ease;
         }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 20px 15px; }
+        /* РОДНАЯ ШАПКА И КОНТРОЛЛЕРЫ СТИЛЯ */
+        .header-wrapper { background-color: var(--card-bg); border-bottom: 1px solid var(--border-color); width: 100%; }
+        header { max-width: 900px; margin: 0 auto; padding: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .logo-block { display: flex; flex-direction: column; }
+        .logo { font-weight: bold; font-size: 20px; color: var(--primary-color); }
+        .tagline { font-size: 13px; color: #7f8c8d; font-style: italic; margin-top: 2px; }
+        
+        .controls-panel { display: flex; align-items: center; gap: 15px; }
+        .theme-toggle-btn {
+            background-color: var(--btn-theme-bg); color: white; border: none; padding: 8px 16px;
+            border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; transition: background 0.2s;
+        }
+        .lang-selector { display: flex; gap: 5px; }
+        .lang-btn { background: none; border: 1px solid var(--border-color); color: var(--text-color); padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+        .lang-btn.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
 
-        /* ВЕРХНЯЯ ШАПКА САЙТА */
-        header { background-color: #2c3e50; color: white; padding: 20px 0; border-radius: 8px 8px 0 0; margin-bottom: 5px; }
-        .header-content { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .logo { font-size: 22px; font-weight: bold; letter-spacing: 1px; }
-        .tagline { font-size: 14px; color: #bdc3c7; font-style: italic; }
+        .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
 
-        /* ПОЛНЫЙ РЯД ИЗ 8 ШАГОВ */
+        /* ИДЕАЛЬНАЯ ПАНЕЛЬ ШАГОВ (БЕЗ ПОЛЗУНКА) */
         .steps-nav { 
             display: flex; 
-            gap: 8px; 
-            overflow-x: auto; 
-            padding: 15px 5px; 
-            margin-bottom: 25px; 
-            background: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 0 0 8px 8px;
-            scrollbar-width: thin;
+            justify-content: space-between; 
+            align-items: center;
+            gap: 5px; 
+            padding-bottom: 15px; 
+            margin-bottom: 20px; 
+            border-bottom: 1px solid var(--border-color); 
         }
         .step-tab { 
-            padding: 10px 16px; 
+            flex: 1;
+            text-align: center;
+            padding: 10px 5px; 
             background-color: var(--card-bg); 
             border: 1px solid var(--border-color); 
             color: var(--text-color); 
             border-radius: 20px; 
             cursor: pointer; 
             font-weight: 500; 
-            font-size: 13px; 
+            font-size: 12px; 
             white-space: nowrap;
-            transition: all 0.2s;
         }
-        .step-tab:hover { border-color: var(--primary-color); }
         .step-tab.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
 
-        /* ОСНОВНАЯ ЗОНА КОНТЕНТА ШАГА */
-        .main-step-content { background-color: var(--card-bg); padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid var(--border-color); margin-bottom: 25px; }
-
-        /* ПЛЕЕР ВИДЕО */
-        .visual-display-zone { width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); background-color: #000; margin-bottom: 25px; }
-        .video-wrapper { padding-bottom: 56.25%; height: 0; position: relative; }
+        /* ПЛЕЕР ВИДЕОУРОКА */
+        .visual-display-zone { width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); background-color: #000; margin-bottom: 20px; }
+        .video-wrapper { padding-bottom: 56.25%; height: 0; position: relative; display: block; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* ТРЕНАЖЕР-ШПАРГАЛКА (ДЛЯ ШАГА 6) */
+        /* БЛОК ИНТЕРАКТИВНОГО ТЕКСТА */
+        .content-card { background-color: var(--card-bg); padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid var(--border-color); margin-bottom: 20px; }
         .exercise-selector-wrapper { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-        .exercise-select-dropdown { width: 100%; padding: 12px 15px; font-size: 15px; font-weight: bold; color: var(--text-color); border: 2px solid var(--primary-color); border-radius: 8px; cursor: pointer; outline: none; }
+        .exercise-select-dropdown { width: 100%; padding: 12px 15px; font-size: 15px; font-weight: bold; color: var(--text-color); background-color: var(--card-bg); border: 2px solid var(--primary-color); border-radius: 8px; cursor: pointer; outline: none; }
         
-        .focused-exercise-card { border-radius: 6px; padding: 20px; box-shadow: inset 5px 0 0 var(--primary-color); background: #f8fafc; border: 1px solid var(--border-color); }
-        .ex-short-brief { font-size: 14px; font-weight: 600; color: var(--primary-color); margin-bottom: 12px; background: rgba(0,123,255,0.06); padding: 8px 12px; border-radius: 4px; }
+        .focused-exercise-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; box-shadow: inset 5px 0 0 var(--primary-color); }
+        .ex-short-brief { font-size: 14px; font-weight: 600; color: var(--primary-color); margin-bottom: 12px; background: rgba(0,123,255,0.05); padding: 8px 12px; border-radius: 4px; }
         .ex-full-details { font-size: 14px; color: #34495e; line-height: 1.6; }
 
-        /* ПОДВАЛ С ДОКУМЕНТАМИ ДЛЯ СКАЧИВАНИЯ */
-        footer { background-color: #ffffff; border: 1px solid var(--border-color); padding: 20px; border-radius: 8px; margin-top: 30px; }
-        .footer-title { font-weight: bold; margin-bottom: 15px; color: #2c3e50; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; }
-        .download-links { display: flex; flex-direction: column; gap: 10px; }
-        .download-btn { display: inline-flex; align-items: center; gap: 10px; color: var(--primary-color); text-decoration: none; font-weight: 500; font-size: 14px; }
-        .download-btn:hover { text-decoration: underline; }
+        /* ОРИГИНАЛЬНЫЕ КНОПКИ ДЕЙСТВИЯ */
+        .download-box { display: flex; gap: 15px; margin-top: 25px; }
+        .btn-action { flex: 1; padding: 14px; text-align: center; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block; border: none; cursor: pointer; transition: opacity 0.2s; }
+        .btn-action:hover { opacity: 0.9; }
+        .btn-blue { background-color: #007bff; }
+        .btn-green { background-color: #28a745; }
+
+        @media (max-width: 768px) {
+            .steps-nav { overflow-x: auto; justify-content: flex-start; }
+            .step-tab { flex: none; padding: 10px 15px; }
+            .download-box { flex-direction: column; gap: 10px; }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    
-    <!-- ШАПКА САЙТА -->
+<!-- НЕЗЫБЛЕМАЯ ШАПКА САЙТА -->
+<div class="header-wrapper">
     <header>
-        <div class="header-content">
+        <div class="logo-block">
             <div class="logo">Методика DD</div>
             <div class="tagline">Полный курс улучшения когнитивных функций</div>
         </div>
-    </header>
-
-    <!-- ПОЛНЫЙ РЯД: ВСЕ 8 ШАГОВ -->
-    <div class="steps-nav">
-        <button class="step-tab" onclick="switchStep(1)">Шаг 1: Введение</button>
-        <button class="step-tab" onclick="switchStep(2)">Шаг 2: Теория</button>
-        <button class="step-tab" onclick="switchStep(3)">Шаг 3: Тестирование</button>
-        <button class="step-tab" onclick="switchStep(4)">Шаг 4: Подготовка</button>
-        <button class="step-tab" onclick="switchStep(5)">Шаг 5: База</button>
-        <button class="step-tab active" onclick="switchStep(6)">Шаг 6: Статика (Тренажер)</button>
-        <button class="step-tab" onclick="switchStep(7)">Шаг 7: Динамика</button>
-        <button class="step-tab" onclick="switchStep(8)">Шаг 8: Итоги</button>
-    </div>
-
-    <!-- ОСНОВНОЙ БЛОК КОНТЕНТА -->
-    <div class="main-step-content">
-        
-        <!-- Видео-урок Шага 6 -->
-        <div class="visual-display-zone">
-            <div class="video-wrapper">
-                <!-- Ссылка на ваше 6-е видео -->
-                <iframe src="https://www.youtube.com/embed/u4YLm5xKJL0" allowfullscreen></iframe>
+        <div class="controls-panel">
+            <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()">Переключить на Зелёную тему</button>
+            <div class="lang-selector">
+                <button class="lang-btn active">RU</button>
+                <button class="lang-btn">UA</button>
+                <button class="lang-btn">EN</button>
             </div>
         </div>
+    </header>
+</div>
 
-        <!-- Интерактивная шпаргалка к упражнениям -->
+<div class="container">
+    
+    <!-- СТРОГИЙ РЯД ИЗ 8 ШАГОВ (БЕЗ СКРОЛЛБАРА НА ПК) -->
+    <div class="steps-nav">
+        <button class="step-tab">Шаг 1</button>
+        <button class="step-tab">Шаг 2</button>
+        <button class="step-tab">Шаг 3</button>
+        <button class="step-tab">Шаг 4</button>
+        <button class="step-tab">Шаг 5</button>
+        <button class="step-tab active">Шаг 6 (Тренажер)</button>
+        <button class="step-tab">Шаг 7</button>
+        <button class="step-tab">Шаг 8</button>
+    </div>
+
+    <!-- КОРРЕКТНЫЙ ПЛЕЕР С ВИДЕОУРОКОМ -->
+    <div class="visual-display-zone">
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/u4YLm5xKJL0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- ИНТЕРАКТИВНЫЙ БЛОК: ВСЕ 11 УПРАЖНЕНИЙ -->
+    <div class="content-card">
         <div class="exercise-selector-wrapper">
             <label style="font-size: 13px; font-weight: bold; color: #7f8c8d;">Быстрый выбор описания упражнения:</label>
             <select class="exercise-select-dropdown" onchange="updateText(parseInt(this.value))" id="dropdown-select">
@@ -123,60 +154,100 @@
                 <option value="2">Упражнение №2</option>
                 <option value="3">Упражнение №3</option>
                 <option value="4">Упражнение №4</option>
+                <option value="5">Упражнение №5</option>
+                <option value="6">Упражнение №6</option>
+                <option value="7">Упражнение №7</option>
+                <option value="8">Упражнение №8</option>
+                <option value="9">Упражнение №9</option>
+                <option value="10">Упражнение №10</option>
+                <option value="11">Упражнение №11 (Массаж)</option>
             </select>
         </div>
 
         <div class="focused-exercise-card" id="text-target-zone">
-            <!-- Сюда подставляется текст через JavaScript -->
+            <!-- Текст подгружается скриптом автоматически -->
         </div>
-
     </div>
 
-    <!-- БЛОК СКАЧИВАНИЯ ДОКУМЕНТОВ -->
-    <footer>
-        <div class="footer-title">📁 Материалы для скачивания к курсу:</div>
-        <div class="download-links">
-            <a href="docs/metodika_dd_manual.pdf" class="download-btn" download>
-                📄 Скачать методическое руководство (PDF)
-            </a>
-            <a href="docs/exercise_tracker.pdf" class="download-btn" download>
-                📊 Скачать Дневник занятий и трекер прогресса (PDF)
-            </a>
-        </div>
-    </footer>
+    <!-- СНОВА НАШИ КНОПКИ ДЛЯ СКАЧИВАНИЯ И ПЕЧАТИ -->
+    <div class="download-box">
+        <button class="btn-action btn-blue" onclick="window.print()">👁️ Открыть / Распечатать Таблицу Ландольта</button>
+        <a href="#" class="btn-action btn-green">📥 Скачать Дневник тренировок (Excel)</a>
+    </div>
 
 </div>
 
 <script>
-    // Текстовая база данных упражнений для Шага 6
+    // ПОЛНАЯ ТЕКСТОВАЯ БАЗА ИЗ 11 СТАТИЧЕСКИХ УПРАЖНЕНИЙ
     const exercisesTextData = [
         { 
             id: 1, 
             name: "Упражнение №1", 
             short: "Голова двигается строго ВВЕРХ и ВНИЗ, взгляд зафиксирован прямо.",
-            desc: "<strong>Техника выполнения:</strong> Смотрите прямо перед собой в воображаемую точку на экране. Плавно поднимите голову вверх (мышцы шеи растягиваются), удерживая взгляд. Затем плавно опустите голову вниз, стараясь прижать подбородок к груди. Взгляд ни на секунду не отрывается от центра."
+            desc: "<strong>Техника выполнения:</strong> Смотрите прямо перед собой в воображаемую точку на экране. Плавно поднимите голову вверх (мышцы шеи растягиваются), удерживая взгляд. Затем плавно опустите голову вниз, стараясь прижать подбородок к груди. Взгляд ни на секунду не отрывается от центра. Повторить 10 раз."
         },
         { 
             id: 2, 
             name: "Упражнение №2", 
             short: "Голова повернута ВПРАВО, и в этом положении совершает наклоны вверх-вниз.",
-            desc: "<strong>Техника выполнения:</strong> Вы делаете абсолютно то же самое, что и в Упражнении №1, только предварительно повернув голову вправо. Из этого положения наклоняйте голову назад и вперед к плечу. Взгляд косится влево, удерживая центральную точку."
+            desc: "<strong>Техника выполнения:</strong> Поверните лицо вправо до упора. Из этого положения начните двигать голову вверх (запрокидывание) и вниз (к плечу). Взгляд косится влево, непрерывно удерживая центральную мишень передом вами. Выполнить 10 циклов."
         },
         { 
             id: 3, 
             name: "Упражнение №3", 
             short: "Голова повернута ВЛЕВО, и совершает наклоны вверх-вниз.",
-            desc: "<strong>Техника выполнения:</strong> То же самое, что и в предыдущем упражнении, только голову поворачиваем влево. Из этого положения поднимайте голову вверх и опускайте вниз. Глаза компенсируют поворот и смотрят прямо перед собой."
+            desc: "<strong>Техника выполнения:</strong> Поверните лицо влево до упора. Начните плавные вертикальные движения головой (вверх-вниз). Глаза при этом скошены вправо, намертво удерживая фиксацию на центральной точке. Выполнить 10 раз."
         },
         { 
             id: 4, 
             name: "Упражнение №4", 
             short: "Повороты лица ВПРАВО и ВЛЕВО по горизонтали.",
-            desc: "<strong>Техника выполнения:</strong> Голова совершает классические повороты из стороны в сторону. Лицо поворачивается вправо, затем влево. В обоих положениях глаза компенсируют поворот шеи и удерживают взгляд по центру экрана."
+            desc: "<strong>Техника выполнения:</strong> Голова совершает классические повороты из стороны в сторону. Лицо плавно поворачивается к правому плечу, затем к левому плечу. Глаза полностью компенсируют поворот шеи и постоянно смотрят в центр экрана."
+        },
+        { 
+            id: 5, 
+            name: "Упражнение №5", 
+            short: "Повороты влево-вправо при максимально ЗАПРОКИНУТОЙ голове.",
+            desc: "<strong>Техника выполнения:</strong> Аккуратно запрокиньте голову назад к спине. Из этого крайнего положения поворачивайте голову к левому и правому плечу. Глаза опущены сильно вниз, удерживая фокус на мишени. Делать медленно."
+        },
+        { 
+            id: 6, 
+            name: "Упражнение №6", 
+            short: "Повороты влево-вправо при подбородке, ПРИЖАТОМ к груди.",
+            desc: "<strong>Техника выполнения:</strong> Плотно прижмите подбородок к грудной клетке. Не отрывая его, плавно вращайте голову влево и вправо. Глаза подняты максимально вверх, удерживая центральную точку перед вами."
+        },
+        { 
+            id: 7, 
+            name: "Упражнение №7", 
+            short: "Движение головы по первой диагонали.",
+            desc: "<strong>Техника выполнения:</strong> Направляйте голову по диагональной линии: из нижнего левого угла (подбородок у левой ключицы) в верхний правый угол (запрокидывание к правому плечу). Взгляд жестко в центре."
+        },
+        { 
+            id: 8, 
+            name: "Упражнение №8", 
+            short: "Движение головы по второй диагонали.",
+            desc: "<strong>Техника выполнения:</strong> Ведите голову по противоположной диагонали: из нижнего правого угла в верхний левый угол. Глаза непрерывно приклеены к центральной точке мишени."
+        },
+        { 
+            id: 9, 
+            name: "Упражнение №9", 
+            short: "Круговые вращения головы ПО часовой стрелке.",
+            desc: "<strong>Техника выполнения:</strong> Выполняйте вращение всей головой по большой окружности по часовой стрелке. Глаза совершают противоположное плавное круговое движение внутри глазниц, удерживая неподвижный центр."
+        },
+        { 
+            id: 10, 
+            name: "Упражнение №10", 
+            short: "Круговые вращения головы ПРОТИВ часовой стрелки.",
+            desc: "<strong>Техника выполнения:</strong> То же круговое вращение всей головой, но в направлении против часовой стрелки. Движения размеренные. Взгляд неподвижно впивается в центральную мишень."
+        },
+        { 
+            id: 11, 
+            name: "Упражнение №11 (Массаж)", 
+            short: "Пальминг и расслабляющий массаж глаз.",
+            desc: "<strong>Техника выполнения:</strong> Закройте глаза. Разогретыми ладонями мягко прикройте веки. Выполните легкие, едва ощутимые круговые движения пальцами для снятия спазма с уставших глазных мышц."
         }
     ];
 
-    // Функция обновления текста упражнений
     function updateText(id) {
         const data = exercisesTextData.find(e => e.id === id);
         if (!data) return;
@@ -188,12 +259,14 @@
         `;
     }
 
-    // Заглушка переключения шагов курса (чтобы кнопки шагов реагировали на нажатия)
-    function switchStep(stepNum) {
-        alert("Вы нажали на Шаг " + stepNum + ". В этой сборке мы детально настроили интерактивный Шаг 6. Код для остальных шагов подключается по аналогии!");
+    function toggleTheme() {
+        const body = document.body;
+        const btn = document.getElementById('theme-btn');
+        body.classList.toggle('green-theme');
+        btn.innerText = body.classList.contains('green-theme') ? "Переключить на Синюю тему" : "Переключить на Зелёную тему";
     }
 
-    // Инициализация по умолчанию
+    // При старте выводим первое упражнение
     updateText(1);
 </script>
 </body>
