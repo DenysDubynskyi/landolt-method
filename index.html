@@ -100,14 +100,6 @@
             .step-tab { flex: none; padding: 10px 15px; }
             .download-box { flex-direction: column; gap: 10px; }
         }
-
-        /* Стиль скрытого бланка для вывода на печать */
-        #print-blank { display: none; }
-        @media print {
-            body * { display: none !important; }
-            #print-blank { display: block !important; text-align: center; margin-top: 50px; }
-            .landolt-row { font-size: 28px; letter-spacing: 12px; font-family: monospace; line-height: 2; }
-        }
     </style>
 </head>
 <body>
@@ -131,7 +123,7 @@
 
 <div class="container">
     
-    <!-- НАВИГАЦИЯ ЖЕСТКО СВЯЗАНА С КЛЮЧЕВЫМИ ШАГАМИ -->
+    <!-- НАВИГАЦИЯ МЕЖДУ ШАГАМИ -->
     <div class="steps-nav">
         <button class="step-tab" id="step-tab-1" onclick="switchStep(1)">Шаг 1</button>
         <button class="step-tab" id="step-tab-2" onclick="switchStep(2)">Шаг 2</button>
@@ -151,52 +143,41 @@
     </div>
 
     <div class="content-card">
-        <!-- Блок выбора упражнений (виден только на шагах 6 и 7) -->
+        <!-- Блок выбора упражнений -->
         <div class="exercise-selector-wrapper" id="exercise-selector-block">
             <label style="font-size: 13px; font-weight: bold; color: #7f8c8d;">Быстрый выбор описания упражнения:</label>
             <select class="exercise-select-dropdown" onchange="updateExerciseText(parseInt(this.value))" id="dropdown-select">
-                <!-- Опции генерируются динамически через JS -->
+                <!-- Опции генерируются через JS -->
             </select>
         </div>
 
         <div class="focused-exercise-card" id="text-target-zone">
-            <!-- Сюда залетает текст -->
+            <!-- Текст подгружается скриптом -->
         </div>
     </div>
 
+    <!-- ИСПРАВЛЕННЫЕ ССЫЛКИ НА ВАШИ ФАЙЛЫ -->
     <div class="download-box">
-        <button class="btn-action btn-blue" onclick="window.print()">👁️ Открыть / Распечатать Таблицу Ландольта</button>
-        <a href="landolt-diary.xlsx" class="btn-action btn-green" download>📥 Скачать Дневник тренировок (Excel)</a>
+        <a href="landolt-table.pdf" target="_blank" class="btn-action btn-blue">👁️ Открыть / Распечатать Таблицу Ландольта</a>
+        <a href="landolt-diary.xlsx" download class="btn-action btn-green">📥 Скачать Дневник тренировок (Excel)</a>
     </div>
 
 </div>
 
-<!-- Специальный скрытый контейнер. Когда пользователь жмет «Печать», принтер напечатает этот чистый бланк -->
-<div id="print-blank">
-    <h2>Таблица колец Ландольта для тестирования</h2>
-    <p>Найдите и зачеркните кольца с разрывом в требуемом направлении.</p>
-    <br>
-    <div class="landolt-row">о о со о о о со о о со</div>
-    <div class="landolt-row">о со о о со о о о со о</div>
-    <div class="landolt-row">со о о со о со о о о о</div>
-    <div class="landolt-row">о о со о о о со о со о</div>
-    <div class="landolt-row">со со о о о со о о со о</div>
-</div>
-
 <script>
-    // БАЗА ДАННЫХ ВСЕХ ШАГОВ КУРСА
+    // БАЗА ДАННЫХ ВСЕХ ШАГОВ С РАЗНЫМИ ВИДЕО (Замените ID видео на свои финальные)
     const stepsData = {
-        1: { name: "Шаг 1: Введение", video: "https://www.youtube.com/embed/u4YLm5xKJL0", desc: "Добро пожаловать в методику DD. В этом вводном видео мы разберем основные цели курса и результаты, которых вы достигнете." },
-        2: { name: "Шаг 2: Теория", video: "https://www.youtube.com/embed/u4YLm5xKJL0", desc: "Теоретические основы и влияние статодинамических упражнений на когнитивные функции мозга и концентрацию." },
-        3: { name: "Шаг 3: Тестирование", video: "https://www.youtube.com/embed/u4YLm5xKJL0", desc: "Инструкция по проведению первичного замера внимания с помощью печатной Таблицы Ландольта (кнопка распечатки внизу)." },
-        4: { name: "Шаг 4: Подготовка", video: "https://www.youtube.com/embed/u4YLm5xKJL0", desc: "Разминка, правильная посадка и базовая настройка дыхания перед стартом тренировок." },
-        5: { name: "Шаг 5: База", video: "https://www.youtube.com/embed/u4YLm5xKJL0", desc: "Разбор базовых понятий фиксации взгляда и механики взаимодействия глаз и шеи." },
+        1: { name: "Шаг 1: Введение", video: "https://www.youtube.com/embed/S_S7p9G_Gmo", desc: "Добро пожаловать в методику DD. В этом вводном видео мы разберем основные цели курса и результаты, которых вы достигнете." },
+        2: { name: "Шаг 2: Теория", video: "https://www.youtube.com/embed/dQw4w9WgXcQ", desc: "Теоретические основы и влияние статодинамических упражнений на когнитивные функции мозга и концентрацию." },
+        3: { name: "Шаг 3: Тестирование", video: "https://www.youtube.com/embed/3JZ_D3ELwOQ", desc: "Инструкция по проведению первичного замера внимания с помощью печатной Таблицы Ландольта (кнопка открытия файла внизу)." },
+        4: { name: "Шаг 4: Подготовка", video: "https://www.youtube.com/embed/2Vv-BfVoq4g", desc: "Разминка, правильная посадка и базовая настройка дыхания перед стартом тренировок." },
+        5: { name: "Шаг 5: База", video: "https://www.youtube.com/embed/LXb3EKWsInQ", desc: "Разбор базовых понятий фиксации взгляда и механики взаимодействия глаз и шеи." },
         6: { name: "Шаг 6: Статические упражнения", video: "https://www.youtube.com/embed/u4YLm5xKJL0", isExerciseStep: true, type: "static" },
-        7: { name: "Шаг 7: Динамические упражнения", video: "https://www.youtube.com/embed/u4YLm5xKJL0", isExerciseStep: true, type: "dynamic" },
-        8: { name: "Шаг 8: Итоги", video: "https://www.youtube.com/embed/u4YLm5xKJL0", desc: "Поздравляем с прохождением цикла! Проведите повторный тест, занесите данные в Excel-дневник и оцените прирост продуктивности." }
+        7: { name: "Шаг 7: Динамические упражнения", video: "https://www.youtube.com/embed/t46n6EdfM94", isExerciseStep: true, type: "dynamic" },
+        8: { name: "Шаг 8: Итоги", video: "https://www.youtube.com/embed/V-_O7nl0Ii0", desc: "Поздравляем с прохождением цикла! Проведите повторный тест, занесите данные в Excel-дневник и оцените прирост продуктивности." }
     };
 
-    // БАЗА УПРАЖНЕНИЙ ДЛЯ ШАГОВ 6 И 7
+    // БАЗА 11 СТАТИЧЕСКИХ УПРАЖНЕНИЙ
     const staticExercises = [
         { id: 1, name: "Упражнение №1", short: "Голова ВВЕРХ и ВНИЗ, взгляд зафиксирован прямо.", desc: "Смотрите прямо в воображаемую точку на экране. Плавно поднимите голову вверх, удерживая взгляд. Затем плавно опустите голову вниз, прижимая подбородок к груди. Взгляд не отрывается от центра. Повторить 10 раз." },
         { id: 2, name: "Упражнение №2", short: "Голова повернута ВПРАВО, наклоны вверх-вниз.", desc: "Поверните лицо вправо до упора. Из этого положения совершайте плавные наклоны головы вверх и вниз. Взгляд косится влево, удерживая центральную мишень." },
@@ -211,6 +192,7 @@
         { id: 11, name: "Упражнение №11 (Массаж)", short: "Пальминг и расслабляющий массаж глаз.", desc: "Закройте глаза. Разогретыми ладонями мягко прикройте веки. Выполните легкие круговые движения пальцами для снятия спазма." }
     ];
 
+    // БАЗА 5 ДИНАМИЧЕСКИХ УПРАЖНЕНИЙ
     const dynamicExercises = [
         { id: 1, name: "Динамика №1", short: "Движение глаз вслед за синхронным движением головы.", desc: "В отличие от статики, здесь ваши глаза двигаются вместе с головой в одну и ту же сторону, фокусируясь на перемещающемся объекте." },
         { id: 2, name: "Динамика №2", short: "Быстрые переключения взгляда (саккады).", desc: "Голова неподвижна, глаза совершают максимально быстрые прыжки между крайними точками вправо-влево." },
@@ -219,37 +201,30 @@
         { id: 5, name: "Динамика №5", short: "Финишное расслабление и фокусировка вдаль.", desc: "Чередование сильного зажмуривания и расслабления с переносом взгляда на удаленный объект за окном." }
     ];
 
-    let currentStepGlobal = 6;
     let activeExercisesList = [];
 
     function switchStep(stepNum) {
-        currentStepGlobal = stepNum;
         const step = stepsData[stepNum];
         if (!step) return;
 
-        // 1. Меняем активную вкладку
+        // 1. Подсветка активной вкладки шагов
         document.querySelectorAll('.step-tab').forEach(t => t.classList.remove('active'));
         document.getElementById(`step-tab-${stepNum}`).classList.add('active');
 
-        // 2. Подменяем видео в плеере
+        // 2. ФИЗИЧЕСКАЯ ПОДМЕНА ВИДЕО В ПЛЕЕРЕ
         document.getElementById('main-video-player').src = step.video;
 
-        // 3. Логика отображения выпадающего списка
+        // 3. Управление интерактивным блоком упражнений
         const selectorBlock = document.getElementById('exercise-selector-block');
         const dropdown = document.getElementById('dropdown-select');
 
         if (step.isExerciseStep) {
             selectorBlock.style.display = 'flex';
-            
-            // Наполняем селектор в зависимости от типа (Статика или Динамика)
             activeExercisesList = step.type === 'static' ? staticExercises : dynamicExercises;
             dropdown.innerHTML = activeExercisesList.map(e => `<option value="${e.id}">${e.name}</option>`).join('');
-            
-            // Выводим первое упражнение из списка
             updateExerciseText(1);
         } else {
             selectorBlock.style.display = 'none';
-            // Выводим обычный текст описания шага
             document.getElementById('text-target-zone').innerHTML = `
                 <h3 style="margin-top:0; color: #2c3e50;">${step.name}</h3>
                 <div class="ex-full-details">${step.desc}</div>
@@ -275,7 +250,7 @@
         btn.innerText = body.classList.contains('green-theme') ? "Переключить на Синюю тему" : "Переключить на Зелёную тему";
     }
 
-    // Инициализация по умолчанию на Шаге 6
+    // Старт на Шаге 6 по умолчанию
     switchStep(6);
 </script>
 </body>
